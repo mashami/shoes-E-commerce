@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 // "/image/image1.png";
 
 interface CardProps {
@@ -10,10 +10,15 @@ interface CardProps {
   imageUrl: string;
   price: number;
   shoesName: string;
+
+  //   setOpenDialog: Dispatch<SetStateAction<boolean>>;
 }
 const Card = ({ id, imageUrl, price, shoesName }: CardProps) => {
   return (
-    <div className=" group bg-[#E8EAED] rounded-[16px] overflow-hidden space-y-2 pb-3 relative  shadow-xl cursor-pointer border-[0.5px] border-white/10">
+    <div
+      //   onClick={() => setOpenDialog(true)}
+      className=" group bg-[#E8EAED] rounded-[16px] overflow-hidden space-y-2 pb-3 relative  shadow-xl cursor-pointer border-[0.5px] border-white/10"
+    >
       <div className="w-full h-[231px] relative overflow-hidden">
         <Image
           src={imageUrl}

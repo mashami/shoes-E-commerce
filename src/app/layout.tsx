@@ -22,15 +22,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={cn(`${bricolage.variable} antialiased`, "container py-5")}
-      >
+      <body className={cn(`${bricolage.variable} font-bricolage`)}>
         <main>
           <div className="fixed w-full top-0 right-0 px-[50px] bg-white z-50">
             <NavBar />
           </div>
 
-          <div className="pt-20">{children}</div>
+          <div className="pt-20 container py-6">{children}</div>
         </main>
       </body>
     </html>
