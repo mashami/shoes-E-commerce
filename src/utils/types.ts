@@ -1,5 +1,5 @@
 
-export interface ProductProps{
+export interface ProductTypes{
     id:string
     name:string,
     price:number,
@@ -12,7 +12,5 @@ export interface ProductProps{
 export interface ShoesType{
     id:string
     brandName:string
-    product:ProductProps[]
-    
-
+    product:ProductTypes[]
 }
