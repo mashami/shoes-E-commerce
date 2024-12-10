@@ -196,7 +196,7 @@ const ShoesItemDialog = ({
             <div className="flex items-center space-x-3">
               <Button
                 text="Add to cart"
-                className="bg-black h-12 rounded-xl text-[30px] text-white flex flex-1"
+                className="bg-black outline-none hover:bg-black/80 transition ease-in-out duration-300 h-12 rounded-xl text-[30px] text-white flex flex-1"
                 svg={
                   <svg
                     width={27}
@@ -214,7 +214,7 @@ const ShoesItemDialog = ({
               />
 
               <Button
-                className="h-12 rounded-xl bg-[#D9D9D9]"
+                className="h-12 rounded-xl bg-[#D9D9D9] hover:bg-[#D9D9D9]/50 transition duration-300 ease-in-out"
                 svg={
                   <svg
                     width={22}
