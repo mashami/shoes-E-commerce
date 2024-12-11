@@ -1,4 +1,4 @@
-import { ShoesType } from "./types";
+import { AllLikedProps, findProductProps, ProductTypes, ShoesType } from "./types";
 
 export const staticShoesData: ShoesType[] = [
   {
@@ -9,6 +9,8 @@ export const staticShoesData: ShoesType[] = [
         id: "nike-1",
         name: "Nike Product 1",
         price: 100,
+        liked:true,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/nike.png", "/image/nike.png", "/image/nike.png", "/image/nike.png"],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
@@ -17,6 +19,8 @@ export const staticShoesData: ShoesType[] = [
         id: "nike-2",
         name: "Nike Product 2",
         price: 110,
+        liked:true,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
           pictures: ["/image/nike.png", "/image/nike.png", "/image/nike.png", "/image/nike.png"],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
@@ -25,6 +29,8 @@ export const staticShoesData: ShoesType[] = [
         id: "nike-3",
         name: "Nike Product 3",
         price: 120,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
          pictures: ["/image/nike.png", "/image/nike.png", "/image/nike.png", "/image/nike.png"],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
@@ -33,6 +39,8 @@ export const staticShoesData: ShoesType[] = [
         id: "nike-4",
         name: "Nike Product 4",
         price: 130,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
           pictures: ["/image/nike.png", "/image/nike.png", "/image/nike.png", "/image/nike.png"],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
@@ -41,6 +49,8 @@ export const staticShoesData: ShoesType[] = [
         id: "nike-5",
         name: "Nike Product 5",
         price: 140,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
           pictures: ["/image/nike.png", "/image/nike.png", "/image/nike.png", "/image/nike.png"],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
@@ -49,6 +59,7 @@ export const staticShoesData: ShoesType[] = [
         id: "nike-6",
         name: "Nike Product 6",
         price: 150,
+        liked:false,
          pictures: ["/image/nike.png", "/image/nike.png", "/image/nike.png", "/image/nike.png"],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
@@ -57,6 +68,7 @@ export const staticShoesData: ShoesType[] = [
         id: "nike-7",
         name: "Nike Product 7",
         price: 160,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
          pictures: ["/image/nike.png", "/image/nike.png", "/image/nike.png", "/image/nike.png"],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
@@ -65,6 +77,8 @@ export const staticShoesData: ShoesType[] = [
         id: "nike-8",
         name: "Nike Product 8",
         price: 170,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
           pictures: ["/image/nike.png", "/image/nike.png", "/image/nike.png", "/image/nike.png"],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
@@ -79,6 +93,8 @@ export const staticShoesData: ShoesType[] = [
         id: "adidas-1",
         name: "Adidas Product 1",
         price: 120,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/adida.webp", "/image/adida.webp","/image/adida.webp", "/image/adida.webp"],
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -87,6 +103,8 @@ export const staticShoesData: ShoesType[] = [
         id: "adidas-2",
         name: "Adidas Product 2",
         price: 130,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
        pictures: ["/image/adida.webp", "/image/adida.webp","/image/adida.webp", "/image/adida.webp"],
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -95,6 +113,8 @@ export const staticShoesData: ShoesType[] = [
         id: "adidas-3",
         name: "Adidas Product 3",
         price: 140,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
        pictures: ["/image/adida.webp", "/image/adida.webp","/image/adida.webp", "/image/adida.webp"],
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -103,6 +123,8 @@ export const staticShoesData: ShoesType[] = [
         id: "adidas-4",
         name: "Adidas Product 4",
         price: 150,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/adida.webp", "/image/adida.webp","/image/adida.webp", "/image/adida.webp"],
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -111,6 +133,8 @@ export const staticShoesData: ShoesType[] = [
         id: "adidas-5",
         name: "Adidas Product 5",
         price: 160,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/adida.webp", "/image/adida.webp","/image/adida.webp", "/image/adida.webp"],
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -119,6 +143,8 @@ export const staticShoesData: ShoesType[] = [
         id: "adidas-6",
         name: "Adidas Product 6",
         price: 170,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/adida.webp", "/image/adida.webp","/image/adida.webp", "/image/adida.webp"],
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -127,6 +153,8 @@ export const staticShoesData: ShoesType[] = [
         id: "adidas-7",
         name: "Adidas Product 7",
         price: 180,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
        pictures: ["/image/adida.webp", "/image/adida.webp","/image/adida.webp", "/image/adida.webp"],
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -135,6 +163,8 @@ export const staticShoesData: ShoesType[] = [
         id: "adidas-8",
         name: "Adidas Product 8",
         price: 190,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
        pictures: ["/image/adida.webp", "/image/adida.webp","/image/adida.webp", "/image/adida.webp"],
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -149,6 +179,8 @@ export const staticShoesData: ShoesType[] = [
         id: "puma-1",
         name: "Puma Product 1",
         price: 90,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/puma.avif", "/image/puma.avif", "/image/puma.avif", "/image/puma.avif"],
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -157,6 +189,8 @@ export const staticShoesData: ShoesType[] = [
         id: "puma-2",
         name: "Puma Product 2",
         price: 100,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/puma.avif", "/image/puma.avif", "/image/puma.avif", "/image/puma.avif"],
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -165,6 +199,8 @@ export const staticShoesData: ShoesType[] = [
         id: "puma-3",
         name: "Puma Product 3",
         price: 110,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/puma.avif", "/image/puma.avif", "/image/puma.avif", "/image/puma.avif"],
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -173,6 +209,8 @@ export const staticShoesData: ShoesType[] = [
         id: "puma-4",
         name: "Puma Product 4",
         price: 120,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/puma.avif", "/image/puma.avif", "/image/puma.avif", "/image/puma.avif"],
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -181,6 +219,8 @@ export const staticShoesData: ShoesType[] = [
         id: "puma-5",
         name: "Puma Product 5",
         price: 130,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/puma.avif", "/image/puma.avif", "/image/puma.avif", "/image/puma.avif"],
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -189,6 +229,7 @@ export const staticShoesData: ShoesType[] = [
         id: "puma-6",
         name: "Puma Product 6",
         price: 140,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: ["/image/puma.avif", "/image/puma.avif", "/image/puma.avif", "/image/puma.avif"],
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -197,6 +238,8 @@ export const staticShoesData: ShoesType[] = [
         id: "puma-7",
         name: "Puma Product 7",
         price: 150,
+        liked:false,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
        pictures: ["/image/puma.avif", "/image/puma.avif", "/image/puma.avif", "/image/puma.avif"],
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -205,6 +248,8 @@ export const staticShoesData: ShoesType[] = [
         id: "puma-8",
         name: "Puma Product 8",
         price: 160,
+        liked:true,
+        description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
        pictures: ["/image/puma.avif", "/image/puma.avif", "/image/puma.avif", "/image/puma.avif"],
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -212,3 +257,106 @@ export const staticShoesData: ShoesType[] = [
     ],
   },
 ];
+
+
+
+export const handleFilterShoes = ({productId, brandId}:findProductProps) => {
+   
+    const brand = staticShoesData.find((shoes) => shoes.id === brandId);
+
+    if (!brand) {
+      console.warn("Brand not found.");
+      return;
+    }
+
+    const singleProduct = brand.product.find((product) => product.id === productId);
+
+    if (!singleProduct) {
+      console.warn("Product not found in the selected brand.");
+      return;
+    }
+
+    return singleProduct as ProductTypes;
+  };
+
+
+
+
+export const handleUpdateLiked = ({ productId, brandId }: findProductProps) => {
+ 
+  const singleProduct = handleFilterShoes({ productId, brandId });
+
+  if (!singleProduct) {
+    console.warn("Product not found, cannot update liked status.");
+    return;
+  }
+  singleProduct.liked = !singleProduct.liked;
+
+  console.log(`Updated product liked status: `, singleProduct);
+};
+
+
+
+
+
+
+export const findLikedProducts = (): AllLikedProps[] => {
+  const likedProducts: AllLikedProps[] = [];
+
+  staticShoesData.forEach((brand) => {
+    brand.product.forEach((product) => {
+      if (product.liked) {
+        likedProducts.push({
+          product,
+          brandId: brand.id,
+          brandName: brand.brandName,
+        });
+      }
+    });
+  });
+
+  return likedProducts as AllLikedProps[];
+};
+
+
+
+export const cartProducts: AllLikedProps[] = [];
+
+
+export const addProductCart = (product: AllLikedProps) => {
+  // Check if the product is already in the cart
+  const isAlreadyInCart = cartProducts.some(
+    (item) => item.product.id === product.product.id && item.brandId === product.brandId
+  );
+
+  if (isAlreadyInCart) {
+    console.warn("Product is already in the cart.");
+    return;
+  }
+
+  // Add the product to the cart
+  cartProducts.push(product);
+  console.log("Product added to the cart:", product);
+};
+
+
+export const getCartProducts = (): AllLikedProps[] => {
+  return cartProducts;
+};
+
+
+
+
+export const removeProductCart = ({productId,brandId}:findProductProps) => {
+  
+  const productIndex = cartProducts.findIndex(
+    (item) => item.product.id === productId && item.brandId === brandId
+  );
+
+  if (productIndex === -1) {
+    console.warn("Product not found in the cart.");
+    return;
+  }
+
+  return cartProducts.splice(productIndex, 1);
+};

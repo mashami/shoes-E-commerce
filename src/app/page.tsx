@@ -11,7 +11,7 @@ export default function Home() {
         <MainCard
           brandId={shoes.id}
           key={shoes.id}
-          brandTitle={shoes.brandName}
+          brandName={shoes.brandName}
           product={shoes.product}
         />
       ))}
