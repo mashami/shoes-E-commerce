@@ -5,7 +5,6 @@ import Card from "./Card";
 import { ProductTypes, ShoesType } from "@/utils/types";
 import { ShoesItemDialog } from "../ShoesItem";
 import { staticShoesData } from "@/utils/actions";
-import TestDialog from "../ShoesItem/testDialog";
 
 interface MainCardProps {
   brandTitle: string;

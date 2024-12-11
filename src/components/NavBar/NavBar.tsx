@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import TestDialog from "../ShoesItem/testDialog";
+import TestDialog from "../ShoesItem/TestDialog";
 
 const NavBar = () => {
   const [open, setOpen] = useState<boolean>(false);
