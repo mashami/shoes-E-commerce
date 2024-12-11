@@ -3,9 +3,12 @@
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import TestDialog from "../ShoesItem/TestDialog";
+import LovedSheet from "./LovedSheet";
+import MyCartDialog from "./MyCartDialog";
 
 const NavBar = () => {
-  const [open, setOpen] = useState<boolean>(false);
+  const [openSheet, setOpenSheet] = useState<boolean>(false);
+  const [isMycartDialogOpen, setIsMyCartDialogOpen] = useState<boolean>(false);
   return (
     <>
       <div className="flex items-center justify-between py-4">
@@ -49,7 +52,10 @@ const NavBar = () => {
             />
           </div>
 
-          <div className="flex items-center space-x-3 py-2 px-4 rounded-full border border-black/20 cursor-pointer select-none">
+          <div
+            onClick={() => setIsMyCartDialogOpen(true)}
+            className="flex items-center space-x-3 py-2 px-4 rounded-full border border-black/20 cursor-pointer select-none"
+          >
             <svg
               width={22}
               height={20}
@@ -68,11 +74,11 @@ const NavBar = () => {
               />
             </svg>
 
-            <p>My card</p>
+            <p className="font-bold font-bricolage">My cart</p>
           </div>
 
           <div
-            onClick={() => setOpen(true)}
+            onClick={() => setOpenSheet(true)}
             className="p-3 rounded-full border border-black/20 cursor-pointer"
           >
             <svg
@@ -126,7 +132,11 @@ const NavBar = () => {
         </div>
       </div>
 
-      <TestDialog openTest={open} setOpenDialog={setOpen} />
+      <LovedSheet isSheetOpen={openSheet} setIsSheetOpen={setOpenSheet} />
+
+      <MyCartDialog open={isMycartDialogOpen} setOpen={setIsMyCartDialogOpen} />
+
+      {/* <TestDialog openTest={open} setOpenDialog={setOpen} /> */}
     </>
   );
 };

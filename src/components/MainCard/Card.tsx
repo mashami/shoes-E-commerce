@@ -1,22 +1,75 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
+import {
+  addProductCart,
+  handleFilterShoes,
+  handleUpdateLiked,
+} from "@/utils/actions";
+import { ProductTypes } from "@/utils/types";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction } from "react";
 // "/image/image1.png";
 
 interface CardProps {
-  id?: string;
-  imageUrl: string;
-  price: number;
-  shoesName: string;
-
-  //   setOpenDialog: Dispatch<SetStateAction<boolean>>;
+  product: ProductTypes;
+  brandId: string;
+  brandName: string;
+  setDataFilled: Dispatch<SetStateAction<ProductTypes | null>>;
+  setOpenDialog: Dispatch<SetStateAction<boolean>>;
 }
-const Card = ({ id, imageUrl, price, shoesName }: CardProps) => {
+const Card = ({
+  product,
+  brandName,
+  brandId,
+  setDataFilled,
+  setOpenDialog,
+}: CardProps) => {
+  const {
+    id,
+    pictures: [imageUrl] = [][0],
+    price,
+    name: shoesName,
+    liked = false,
+  } = product;
+
+  const router = useRouter();
+  const handleFindProduct = (
+    e: React.MouseEvent<HTMLDivElement>,
+    productId: string
+  ) => {
+    // e.stopPropagation();
+    const getProduct: ProductTypes | undefined = handleFilterShoes({
+      productId,
+      brandId,
+    });
+    setDataFilled(getProduct || null);
+    setOpenDialog(true);
+  };
+
+  const handleUpdateLikedChange = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+
+    console.log("hereeeee");
+
+    handleUpdateLiked({ productId: id, brandId });
+    router.refresh();
+  };
+
+  const addProductCartHandle = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+
+    addProductCart({
+      brandId: brandId,
+      brandName: brandName,
+      product: product,
+    });
+  };
+
   return (
     <div
-      //   onClick={() => setOpenDialog(true)}
+      onClick={(e) => handleFindProduct(e, id)}
       className=" group bg-[#E8EAED] rounded-[16px] overflow-hidden space-y-2 pb-3 relative  shadow-xl cursor-pointer border-[0.5px] border-white/10"
     >
       <div className="w-full h-[231px] relative overflow-hidden">
@@ -30,7 +83,10 @@ const Card = ({ id, imageUrl, price, shoesName }: CardProps) => {
           className=" group-hover:scale-105 transition-all ease-in-out duration-300"
         />
 
-        <div className="absolute bottom-1 bg-blue-500 hover:bg-blue-400 -translate-x-1/2 left-1/2 group-hover:translate-y-0 translate-y-12 transition duration-300 ease-in-out flex items-center space-x-1 py-1.5 px-4 rounded-full border border-black/20 cursor-pointer select-none">
+        <div
+          onClick={addProductCartHandle}
+          className="absolute bottom-1 bg-blue-500 hover:bg-blue-400 -translate-x-1/2 left-1/2 group-hover:translate-y-0 translate-y-12 transition duration-300 ease-in-out flex items-center space-x-1 py-1.5 px-4 rounded-full cursor-pointer select-none"
+        >
           <svg
             width={22}
             height={20}
@@ -71,21 +127,65 @@ const Card = ({ id, imageUrl, price, shoesName }: CardProps) => {
         </div>
       </div>
 
-      <div className="w-8 h-8 rounded-full bg-[#ECE2E2] absolute top-0 right-2 flex items-center justify-center hover:bg-[#ECE2E2]/80 transition ease-in-out duration-300 cursor-pointer">
-        <svg
-          width={20}
-          height={19}
-          className=""
-          viewBox="0 0 20 19"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M15.2714 12.7714C14.1797 13.8632 12.7951 15.1651 11.1157 16.6782C11.1156 16.6783 11.1155 16.6784 11.1153 16.6785L10 17.6785L8.88469 16.6785C8.88454 16.6784 8.8844 16.6783 8.88426 16.6782C7.20494 15.1651 5.82026 13.8632 4.72855 12.7714C3.63918 11.6821 2.78211 10.7134 2.15137 9.86434C1.52024 9.01474 1.09558 8.25518 0.859094 7.58387C0.619291 6.90314 0.5 6.20927 0.5 5.5C0.5 4.05783 0.977907 2.8792 1.92855 1.92855C2.8792 0.977907 4.05783 0.5 5.5 0.5C6.29356 0.5 7.04619 0.667301 7.76303 1.00285C8.48066 1.33876 9.09824 1.81113 9.61903 2.42382L10 2.87202L10.381 2.42382C10.9018 1.81113 11.5193 1.33876 12.237 1.00285C12.9538 0.667301 13.7064 0.5 14.5 0.5C15.9422 0.5 17.1208 0.977907 18.0714 1.92855C19.0221 2.8792 19.5 4.05783 19.5 5.5C19.5 6.20927 19.3807 6.90314 19.1409 7.58387C18.9044 8.25518 18.4798 9.01474 17.8486 9.86434C17.2179 10.7134 16.3608 11.6821 15.2714 12.7714ZM9.66638 16.0224L10 16.3213L10.3336 16.0224C11.9373 14.5858 13.2607 13.3505 14.3021 12.3175C15.3433 11.2847 16.1752 10.3775 16.7921 9.59774C17.4085 8.81875 17.857 8.10039 18.1151 7.44593C18.3694 6.80115 18.5 6.15158 18.5 5.5C18.5 4.37632 18.1201 3.41301 17.3536 2.64645C16.587 1.87988 15.6237 1.5 14.5 1.5C13.6163 1.5 12.7956 1.75097 12.0489 2.24568C11.4082 2.6701 10.9257 3.2051 10.6182 3.85H9.38175C9.07431 3.2051 8.59179 2.6701 7.95115 2.24568C7.20442 1.75097 6.38371 1.5 5.5 1.5C4.37632 1.5 3.41301 1.87988 2.64645 2.64645C1.87988 3.41301 1.5 4.37632 1.5 5.5C1.5 6.15158 1.63058 6.80115 1.88486 7.44593C2.14296 8.10039 2.59154 8.81875 3.20789 9.59774C3.82483 10.3775 4.65666 11.2847 5.69788 12.3175C6.73932 13.3505 8.06272 14.5858 9.66638 16.0224Z"
-            // fill="#E8EAED"
-            stroke="black"
-          />
-        </svg>
+      <div
+        onClick={handleUpdateLikedChange}
+        className="p-1 rounded-full bg-[#ECE2E2] absolute top-0 right-2 flex items-center justify-center hover:bg-[#ECE2E2]/80 transition ease-in-out duration-300 cursor-pointer"
+      >
+        {liked ? (
+          <svg
+            width={26}
+            height={26}
+            viewBox="0 0 26 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          >
+            <rect width={26} height={26} fill="url(#pattern0_84_1098)" />
+            <defs>
+              <pattern
+                id="pattern0_84_1098"
+                patternContentUnits="objectBoundingBox"
+                width={1}
+                height={1}
+              >
+                <use xlinkHref="#image0_84_1098" transform="scale(0.0111111)" />
+              </pattern>
+              <image
+                id="image0_84_1098"
+                width={90}
+                height={90}
+                xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAAE7UlEQVR4nO2cS4hcRRSGS018xYg6ZLrP6c4Mxu5zOkMmiiPiY5GFCxU1IoIgrtWFIroQJQjiQjH4XhmSjRhRHPFBCOPcc3pso52oMOJjoYnIqIu4NBljhOgkV2pmQIxOTKfr3qrbXR/8m+6h5/x/V9e9VbeqjIlEIpFIJBKJRCKRSCQSifwvE7WLzhfGjcLwvDCoEv4kDAeUMRXCQ0qwXxmmlPGFhPGWPdXqOa5j3TEG59rPVsIXheADJfh5/n/bGhgOCOGPQijC8Jz9uzYPrCzMV5sQXKuErwvD79ZQB5pVxq0JlS7utgatD65Rxm1C+GtHNRAeFsLXtIFXm1BJ6niZELQ6DDc9XkLwhxBsadarlU5raNUqVftl2c/otg5laDapst6EwvTY2HJh3KyMc92bw78Dtz/tBtx5snUow13KcNBpDYR/CuFTrQ1mmfFJc91gSQj2uDSn/9arreHhs5eqwb6njNszrqE9USuvMj6YWlseVoLvMjaYLmrXztGhC4+vwb4mjB/lUYMQ7NMRGMo15GRNaTDHkNMFwRet4eEL/hkyfJVnDTbs3Fr2fJ+cfXeRLqG27SqshGC3jxrsLyiXPnvxwpd61LZF+auB8MlMQ1aujtorseegU9+yGUzWK5dmFrSL+2TtEdnRbjYhNypX+TangWmK8RrnQdthtW9jGp62ZzBB1PHcRe+L8LfWyKrznAWtBLd6N8WBql65yVnQdqrTuyEOVATPugxavRviQEU46SxoJfzBuyEOVjPOgu54Ar2vBAddBt33o0FdImibjbOgXU+oay+J4BeHQeOMd0McpoThe2dBC+Hnvg1poBKGz9wFzfiub0Maqgjfdha0Mj7m3RAHKoJHnQUtDNd7N8RhSgivcxa0NnBAGY/6NqXhae6/Hhp3FzbjxwEYS0OSfRBiXCMED/o2poFJGnC/86DtcithPObbnIajo8Kr0WTB4upP3wbTEGRXoWYS8nzQDbzZt0ENRE0q35hZ0Kkxpynjt75NqvfWDPseN+Z0kyVNLt/r26j6DroOd5usscuhlPGbPm7Ne+2yOJMHyuXb+zZoxo0mL2xf7XGhY+pRu0ze2G0HbrYwYDFEcCRplNYZH9htB94D4LwETxhfTNRqZ/XDhVEI9p5oe0cuNOvVK3u6CyE4Ily+woSAMj7cu0FXHjKhMD9iJNjhPRR2K2GcsN5MSNhNND22omnGPvAwIWK3G9ilrIVvyWT3i1dHTcgkdbityPPWwnhMCO8wRUAYNhU3aNhkioQQvuQ7NO1UBC+bomHna4XgreK0ZHxv3JgzTBFZ2OGKEn5LxsSOck2RsafASNj7E9vJ+tIK0wu0eWBloNOqbae7qkIgWV9aEdReGMIPC3WG0inM9r3jPWSGnVkclhUUrQ1mmRC84itkYXgjt2d+Idz6KePW3EMm2JL5MoHQSBdm/J7JryXj5uBm4vJEG3BPxru+5pThAd8+g0AWFrrPuu8q8JA9odG3v6BQro7aYzWdBU2wv9mAy337CpL3G0OghNPdBw1fTl6Cq337CX5gowzjXYT8Zs8MqXNaCfVIJ8dwLj5seLqv7yxOFaXyDXYL8EkEPZvrmrheRNZW6ic8sZHg68mRas13nT3B9NjY8oTwPiX4ZP7hL+FhZfjUvjY+MnKm7/oikUgkEolEIpFIJBKJREyf8RdzPqc78TOCDgAAAABJRU5ErkJggg=="
+              />
+            </defs>
+          </svg>
+        ) : (
+          <svg
+            width={26}
+            height={26}
+            viewBox="0 0 26 26"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlnsXlink="http://www.w3.org/1999/xlink"
+          >
+            <rect width={26} height={26} fill="url(#pattern0_82_1096)" />
+            <defs>
+              <pattern
+                id="pattern0_82_1096"
+                patternContentUnits="objectBoundingBox"
+                width={1}
+                height={1}
+              >
+                <use xlinkHref="#image0_82_1096" transform="scale(0.0111111)" />
+              </pattern>
+              <image
+                id="image0_82_1096"
+                width={90}
+                height={90}
+                xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAADkklEQVR4nO3c2UtWQRjH8UkzzYg2CAoiaLmosIgKIoiKaMMuu4qgi266CwpaLqLEKLANihYhwsKoi6yw5S/opmghMqmLaLNAzfZd8xuDD2XxZvY658ycc54PvLfOPD9fxzlzZsYYpZRSSimllFJKKdUrQDEwH6gAzgONwCvgG/AZeAHcBU4B64EyV9ECU4EN8rMbpC3b5lfpwz3pU4X0sThxv1ZgOlANvOb/3Qc2AUPzaHcYsAV4kEe7Nvyjtu8mdMA04ArQSd+9k29baS/aHQRUAu8dtGv7fsnlX5czQAmwD2jHvafA4h7aXgo0RdCurWV3MEMKMAG4TbQ6gSqgoFu7BcAeR389PbkFjPcd8kygmficAwbKP9kzMbbbBsz2FfIsGUfjdlU+cbO1zvAxXLSQPc3AuLhCLpZxK6vu2OErjqD3+q40AFVRh1wmT3VZ126fGaIM2j6MqC71UT5WRz1nTZLOSL7VsnahfncoiplGPgtEadcGDHAZ9ALfFQVsrsug7Sqaym2by6Av/KURBXUug7ZvRlRuDS6DtoO+yq3VZdD2PZvK7YsGncCgW2PqdBI1uwz6hu9qAnbNZdAnfVcTsBqXQa/2XU3AVrkMeiTw3XdFAbKZjHQWtIR903dVAbruNGQJerPvqgK0MYqghwMffFcWkI/ACOdBS9i6+P/L4UhClqCn6Ousn6+xJkUWtIQd51asUNVGGrIEPUbGp6z6BIyNPGgJeyfZVRlLyBL0YDmqkDXPbe2xBS1hLyd7ymMNuVvYNWTHMS8hS9BDgCek37N8Di+5Dnsh0EF6ddjjcSYEwFbSa7MJBdBPDkemzUVbmwmJHKZ8SHo8sgtpJkTA5JRshnxrjzibkAFLIjrYGRd7omGRSQJgDcm11iQJsIvk2WGSRmYi9raApDhikkrOa58mfHVAoUkyoAi4TLjslRFFJg2AAYE+0NgvQIlJE7rCPks46oO5i8M1oDCQfXz2vWd/k2Z0hX3cY8i1qQ/5j6nfQQ8hV3e/xSZLYR+IMeT9wa3ExQlYF/FOVbvZZbvvOoMArJDL/1yzh5xW+q4vKMAc4KXDkO2FgfN81xXyevZjByE3Bb+e7Bswuo+b3u3BplG+60gEum6GPJHng8g/r9hUuWckHb2dWWR6+tZXQDnwpoeQ7TvKZb77mQrARLlv7k+NkW8IzxqgVC59bZGPvX9Px2OllFJKKaWUUkopE78feRVF2kwveqwAAAAASUVORK5CYII="
+              />
+            </defs>
+          </svg>
+        )}
       </div>
     </div>
   );
