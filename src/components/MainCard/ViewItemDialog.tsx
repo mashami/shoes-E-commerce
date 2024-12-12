@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -8,7 +8,6 @@ import { Button } from "../ui/button";
 import { ProductTypes } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import {
-  addProductCart,
   checkInCartHandle,
   handleUpdateLiked,
   removeProductCart,
