@@ -10,8 +10,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import LikedCard from "./LikedCard";
-import { AllLikedProps } from "@/utils/types";
-import { findLikedProducts } from "@/utils/actions";
+import { AllLikedProps, ProductTypes } from "@/utils/types";
+import { addProductCart, findLikedProducts } from "@/utils/actions";
 
 interface LovedSheetProps {
   isSheetOpen: boolean;
@@ -32,9 +32,10 @@ const LovedSheet = ({ isSheetOpen, setIsSheetOpen }: LovedSheetProps) => {
 
         {allLikedProducts.length > 0 ? (
           <div className="flex-1 overflow-y-auto space-y-4 pt-6 hide-scrollbar">
-            {allLikedProducts.map((product) => (
+            {allLikedProducts.map((product, index) => (
               <LikedCard
-                key={product.product.id}
+                key={index}
+                product={product.product}
                 brandId={product.brandId}
                 brandName={product.brandName}
                 id={product.product.id}
@@ -46,7 +47,7 @@ const LovedSheet = ({ isSheetOpen, setIsSheetOpen }: LovedSheetProps) => {
             ))}
           </div>
         ) : (
-          <p>No liked products yet</p>
+          <p>You don't have Favorate products yet</p>
         )}
       </SheetContent>
     </Sheet>

@@ -2,8 +2,9 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
-import { handleUpdateLiked } from "@/utils/actions";
+import { addProductCart, handleUpdateLiked } from "@/utils/actions";
 import { useRouter } from "next/navigation";
+import { ProductTypes } from "@/utils/types";
 
 interface LikedCardProps {
   imageUrl: string;
@@ -13,6 +14,7 @@ interface LikedCardProps {
   id: string;
   brandId: string;
   productName: string;
+  product: ProductTypes;
 }
 
 const LikedCard = ({
@@ -23,6 +25,7 @@ const LikedCard = ({
   price,
   description,
   productName,
+  product,
 }: LikedCardProps) => {
   const router = useRouter();
 
@@ -30,6 +33,17 @@ const LikedCard = ({
     handleUpdateLiked({ brandId: brandId, productId: id });
     router.refresh();
   };
+
+  const addProductCartHandle = () => {
+    addProductCart({
+      brandId: brandId,
+      brandName: brandName,
+      product: product,
+    });
+
+    router.refresh();
+  };
+
   return (
     <div className="grid grid-cols-3 gap-3 p-3 bg-white rounded-2xl relative overflow-hidden group">
       <div className="relative w-full min-h-[100px] rounded-xl overflow-hidden">
@@ -65,7 +79,10 @@ const LikedCard = ({
       </div>
 
       <div className="absolute left-1/2 -translate-x-1/2 group-hover:top-10 top-16 group-hover:translate-y-1/2 w-fit h-fit  flex items-center justify-center translate-y-20  duration-500 ease-in-out">
-        <div className="w-fit bg-blue-500 hover:bg-blue-400 transition duration-300 ease-in-out flex items-center space-x-1 py-1.5 px-4 rounded-full cursor-pointer select-none">
+        <div
+          onClick={addProductCartHandle}
+          className="w-fit bg-blue-500 hover:bg-blue-400 transition duration-300 ease-in-out flex items-center space-x-1 py-1.5 px-4 rounded-full cursor-pointer select-none"
+        >
           <p className="font-medium text-white">Add</p>
 
           <svg
