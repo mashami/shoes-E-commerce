@@ -360,3 +360,14 @@ export const removeProductCart = ({productId,brandId}:findProductProps) => {
 
   return cartProducts.splice(productIndex, 1);
 };
+
+
+
+export const checkInCartHandle = (brandId: string, productId: string) => {
+    const getAllCartProducts: AllLikedProps[] = getCartProducts();
+    const filterCarts = getAllCartProducts.map(
+      (cart) => cart.brandId === brandId && cart.product.id === productId
+    );
+
+    return filterCarts.includes(true);
+  };

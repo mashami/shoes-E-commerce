@@ -5,6 +5,7 @@ import { Button } from "../ui/button";
 import { addProductCart, handleUpdateLiked } from "@/utils/actions";
 import { useRouter } from "next/navigation";
 import { ProductTypes } from "@/utils/types";
+import { toast } from "sonner";
 
 interface LikedCardProps {
   imageUrl: string;
@@ -40,6 +41,8 @@ const LikedCard = ({
       brandName: brandName,
       product: product,
     });
+
+    toast("Product add in cart successfull");
 
     router.refresh();
   };

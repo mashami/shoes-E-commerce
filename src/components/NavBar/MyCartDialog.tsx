@@ -9,11 +9,12 @@ import {
 } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 
-import { getCartProducts } from "@/utils/actions";
-import { AllLikedProps } from "@/utils/types";
+import { addProductCart, getCartProducts } from "@/utils/actions";
+import { AllLikedProps, ProductTypes } from "@/utils/types";
 
 import React, { Dispatch, SetStateAction } from "react";
 import { CartCard } from "../MainCard";
+import { useRouter } from "next/navigation";
 
 interface TestDialogProps {
   open: boolean;
