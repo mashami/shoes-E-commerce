@@ -1,7 +1,7 @@
 "use client";
 
 import { MainCard } from "@/components/MainCard";
-import { staticShoesData } from "@/utils/actions";
+import { getCartProducts, staticShoesData } from "@/utils/actions";
 import { ShoesType } from "@/utils/types";
 
 export default function Home() {

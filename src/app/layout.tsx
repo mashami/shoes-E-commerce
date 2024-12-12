@@ -3,6 +3,7 @@ import "/src/styles/globals.scss";
 import NavBar from "@/components/NavBar/NavBar";
 import { cn } from "@/lib/utils";
 import { Bricolage_Grotesque } from "next/font/google";
+import { Toaster } from "@/components/ui/sonner";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -30,6 +31,7 @@ export default function RootLayout({
 
           <div className="pt-20 container py-6">{children}</div>
         </main>
+        <Toaster />
       </body>
     </html>
   );
