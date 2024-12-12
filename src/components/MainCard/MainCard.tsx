@@ -2,13 +2,9 @@
 
 import React, { useState } from "react";
 import Card from "./Card";
-import { AllLikedProps, ProductTypes, ShoesType } from "@/utils/types";
+import { ProductTypes } from "@/utils/types";
 import { ShoesItemDialog } from "../ShoesItem";
-import {
-  getCartProducts,
-  handleFilterShoes,
-  staticShoesData,
-} from "@/utils/actions";
+
 import ViewItemDialog from "./ViewItemDialog";
 
 interface MainCardProps {

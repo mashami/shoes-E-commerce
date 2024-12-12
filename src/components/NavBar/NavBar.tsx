@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { Button } from "../ui/button";
-import TestDialog from "../ShoesItem/TestDialog";
 import LovedSheet from "./LovedSheet";
 import MyCartDialog from "./MyCartDialog";
 import TooltipComp from "../TooltipComp/TooltipComp";

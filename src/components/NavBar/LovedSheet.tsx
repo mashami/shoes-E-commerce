@@ -4,14 +4,12 @@ import React, { Dispatch, SetStateAction } from "react";
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from "@/components/ui/sheet";
 import LikedCard from "./LikedCard";
-import { AllLikedProps, ProductTypes } from "@/utils/types";
-import { addProductCart, findLikedProducts } from "@/utils/actions";
+import { AllLikedProps } from "@/utils/types";
+import { findLikedProducts } from "@/utils/actions";
 
 interface LovedSheetProps {
   isSheetOpen: boolean;
@@ -47,7 +45,7 @@ const LovedSheet = ({ isSheetOpen, setIsSheetOpen }: LovedSheetProps) => {
             ))}
           </div>
         ) : (
-          <p>You don't have Favorate products yet</p>
+          <p>You do not have Favorate products yet</p>
         )}
       </SheetContent>
     </Sheet>
