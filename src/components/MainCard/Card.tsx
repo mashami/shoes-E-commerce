@@ -8,31 +8,20 @@ import {
   handleFilterShoes,
   handleUpdateLiked,
 } from "@/utils/actions";
+import { useAppContext } from "@/utils/context/AppContext";
 import { AllLikedProps, ProductTypes } from "@/utils/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
-// "/image/image1.png";
-import { toast } from "sonner";
 
 interface CardProps {
   product: ProductTypes;
   brandId: string;
   brandName: string;
-  setDataFilled: Dispatch<SetStateAction<ProductTypes | null>>;
-  setOpenDialog: Dispatch<SetStateAction<boolean>>;
   openViewDialog: boolean;
   setOpenViewDialog: Dispatch<SetStateAction<boolean>>;
 }
-const Card = ({
-  product,
-  openViewDialog,
-  setOpenViewDialog,
-  brandName,
-  brandId,
-  setDataFilled,
-  setOpenDialog,
-}: CardProps) => {
+const Card = ({ product, setOpenViewDialog, brandId }: CardProps) => {
   const {
     id,
     pictures: [imageUrl] = [][0],
@@ -42,14 +31,18 @@ const Card = ({
   } = product;
 
   const router = useRouter();
+  const {
+    setDataFilled,
+    dataFilled,
+    openCartDialog,
+    openingCartHandle,
+    setOpenCartDialog,
+  } = useAppContext();
 
-  const handleFindProduct = (productId: string) => {
-    const getProduct: ProductTypes | undefined = handleFilterShoes({
-      productId,
-      brandId,
-    });
-    setDataFilled(getProduct || null);
+  const handleFindProduct = () => {
+    setDataFilled(product);
     setOpenViewDialog(true);
+    router.refresh();
   };
 
   const handleUpdateLikedChange = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -61,21 +54,12 @@ const Card = ({
 
   const addProductCartHandle = (e: React.MouseEvent<HTMLDivElement>) => {
     e.stopPropagation();
-    setOpenDialog(true);
-
-    // addProductCart({
-    //   brandId: brandId,
-    //   brandName: brandName,
-    //   product: product,
-    // });
-
-    // toast("Product added in Cart Successfull");
-    router.refresh();
+    openingCartHandle({ brandId, productId: product.id });
   };
 
   return (
     <div
-      onClick={(e) => handleFindProduct(id)}
+      onClick={handleFindProduct}
       className=" group bg-[#E8EAED] rounded-[16px] overflow-hidden space-y-2 pb-3 relative  shadow-xl cursor-pointer border-[0.5px] border-white/10"
     >
       <div className="w-full h-[231px] relative overflow-hidden">

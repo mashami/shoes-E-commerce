@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import { removeProductCart } from "@/utils/actions";
 import { useRouter } from "next/navigation";
+import { Switch } from "@/components/ui/switch";
 
 interface LikedCardProps {
   imageUrl: string;
@@ -13,6 +14,7 @@ interface LikedCardProps {
   id: string;
   brandId: string;
   productName: string;
+  isStayedInCart?: boolean;
 }
 
 const CartCard = ({
@@ -23,12 +25,20 @@ const CartCard = ({
   price,
   description,
   productName,
+  isStayedInCart = true,
 }: LikedCardProps) => {
+  const [isStayed, setIsStayed] = useState<boolean>(isStayedInCart);
   const router = useRouter();
 
-  const removeHandle = () => {
+  const removeHandle = (e: React.MouseEvent<HTMLParagraphElement>) => {
+    e.stopPropagation();
     removeProductCart({ brandId: brandId, productId: id });
     router.refresh();
+  };
+
+  const switchHandle = (e: React.MouseEvent<HTMLDivElement>) => {
+    e.stopPropagation();
+    setIsStayed((prev) => !prev);
   };
   return (
     <div className="grid grid-cols-3 gap-3 p-3 bg-white rounded-2xl relative overflow-hidden group">
@@ -56,11 +66,21 @@ const CartCard = ({
 
         <div className="flex items-center justify-between">
           <p className="font-bold text-[14px]">Free delivery</p>
-          <Button
+
+          <div
+            className="flex flex-col items-end space-y-1"
+            onClick={switchHandle}
+          >
+            <Switch checked={isStayed} onCheckedChange={() => switchHandle} />
+          </div>
+        </div>
+        <div className="flex justify-end">
+          <p
             onClick={removeHandle}
-            text="Remove"
-            className="bg-red-500 outline-none rounded-md text-white px-1 hover:bg-red-500/75 transition ease-in-out duration-300"
-          />
+            className="text-red-500 cursor-pointer hover:text-red-500/75 transition ease-in-out duration-500"
+          >
+            Remove
+          </p>
         </div>
       </div>
     </div>

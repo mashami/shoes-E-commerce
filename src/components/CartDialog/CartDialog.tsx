@@ -13,25 +13,21 @@ import {
   handleUpdateLiked,
   removeProductCart,
 } from "@/utils/actions";
+import { useToast } from "@/hooks/use-toast";
 import { toast } from "sonner";
+import { useAppContext } from "@/utils/context/AppContext";
 
 interface ShoesItemDialogProps {
-  openDialog: boolean;
-  setOpenDialog: Dispatch<SetStateAction<boolean>>;
   product: ProductTypes;
   brandId: string;
   brandName: string;
 }
 
-const ShoesItemDialog = ({
-  openDialog,
-  setOpenDialog,
-  product,
-  brandName,
-  brandId,
-}: ShoesItemDialogProps) => {
+const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
   const [sizeValue, setSizeValue] = useState<number>();
+  const { openCartDialog, setOpenCartDialog } = useAppContext();
   const router = useRouter();
+  const { toast } = useToast();
 
   const addProductCartHandle = () => {
     addProductCart({
@@ -39,20 +35,31 @@ const ShoesItemDialog = ({
       brandName: brandName,
       product: product,
     });
-    toast("Product add in cart successfull");
+    toast({
+      title: "Product add in cart successfull",
+      className: "w-fit",
+    });
     router.refresh();
-
-    // setOpenDialog(false);
   };
 
   const handleFavorateChanges = () => {
     handleUpdateLiked({ brandId, productId: product.id });
+    router.refresh();
+  };
+
+  const removeFromCartHandle = () => {
+    removeProductCart({ brandId, productId: product.id });
+    toast({
+      variant: "destructive",
+      title: "Removed product in cart successfull",
+      className: "w-fit",
+    });
 
     router.refresh();
   };
 
   return (
-    <Dialog onOpenChange={setOpenDialog} open={openDialog}>
+    <Dialog onOpenChange={setOpenCartDialog} open={openCartDialog}>
       <DialogContent className="max-w-[730px] bg-[#F0E8E8] grid grid-cols-2 gap-4 rounded-xl outline-none">
         {product.pictures && (
           <div className="space-y-4">
@@ -262,9 +269,7 @@ const ShoesItemDialog = ({
               ) : (
                 <Button
                   text="Remove from cart"
-                  onClick={() =>
-                    removeProductCart({ brandId, productId: product.id })
-                  }
+                  onClick={removeFromCartHandle}
                   className="bg-red-500 outline-none hover:bg-red-500/80 transition ease-in-out duration-300 h-12 rounded-xl text-[30px] text-white flex flex-1"
                 />
               )}
@@ -371,4 +376,4 @@ const ShoesItemDialog = ({
   );
 };
 
-export default ShoesItemDialog;
+export default CartDialog;

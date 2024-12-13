@@ -3,7 +3,6 @@
 import React, { Dispatch, SetStateAction } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
-import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { ProductTypes } from "@/utils/types";
 import { useRouter } from "next/navigation";
@@ -20,11 +19,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { useAppContext } from "@/utils/context/AppContext";
 
 interface ViewItemDialogProps {
   openViewDialog: boolean;
   setOpenViewDialog: Dispatch<SetStateAction<boolean>>;
-  setIsCartOpen: Dispatch<SetStateAction<boolean>>;
   product: ProductTypes;
   brandId: string;
   brandName: string;
@@ -35,13 +34,15 @@ const ViewItemDialog = ({
   setOpenViewDialog,
   product,
   brandName,
-  setIsCartOpen,
+
   brandId,
 }: ViewItemDialogProps) => {
   const router = useRouter();
+  const { openingCartHandle } = useAppContext();
 
   const addProductCartHandle = () => {
-    setIsCartOpen(true);
+    openingCartHandle({ brandId, productId: product.id });
+    router.refresh();
   };
 
   const handleFavorateChanges = () => {
@@ -190,7 +191,7 @@ const ViewItemDialog = ({
               {product.name}
             </div>
 
-            {product.color && (
+            {/* {product.color && (
               <div className="space-y-3">
                 <h1 className="text-[24px] font-semibold">COLOR</h1>
 
@@ -229,36 +230,21 @@ const ViewItemDialog = ({
                   })}
                 </div>
               </div>
-            )}
+            )} */}
           </div>
 
-          <div className="space-y-3 flex items-center justify-between">
-            <p className="text-[28px] text-black font-bold">
+          <div className="space-y-3 flex items-center  justify-end">
+            {/* <p className="text-[28px] text-black font-bold">
               $ {product.price}
-            </p>
+            </p> */}
 
             <div className="flex items-center space-x-3">
-              {!checkInCartHandle(brandId, product.id) ? (
-                <Button
-                  text="Add to cart"
-                  onClick={addProductCartHandle}
-                  className="bg-black outline-none border-none hover:bg-black/80 transition ease-in-out duration-300 h-12 rounded-xl text-[30px] text-white flex"
-                  svg={
-                    <svg
-                      width={27}
-                      height={26}
-                      viewBox="0 0 27 26"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M7.95487 23.8333C7.36912 23.8333 6.86769 23.6212 6.45057 23.1969C6.03345 22.7726 5.82489 22.2625 5.82489 21.6667C5.82489 21.0708 6.03345 20.5608 6.45057 20.1364C6.86769 19.7121 7.36912 19.5 7.95487 19.5C8.54061 19.5 9.04204 19.7121 9.45916 20.1364C9.87628 20.5608 10.0848 21.0708 10.0848 21.6667C10.0848 22.2625 9.87628 22.7726 9.45916 23.1969C9.04204 23.6212 8.54061 23.8333 7.95487 23.8333ZM18.6047 23.8333C18.019 23.8333 17.5176 23.6212 17.1004 23.1969C16.6833 22.7726 16.4748 22.2625 16.4748 21.6667C16.4748 21.0708 16.6833 20.5608 17.1004 20.1364C17.5176 19.7121 18.019 19.5 18.6047 19.5C19.1905 19.5 19.6919 19.7121 20.109 20.1364C20.5262 20.5608 20.7347 21.0708 20.7347 21.6667C20.7347 22.2625 20.5262 22.7726 20.109 23.1969C19.6919 23.6212 19.1905 23.8333 18.6047 23.8333ZM7.04963 6.49999L9.6056 11.9167H17.0605L19.9892 6.49999H7.04963ZM6.03789 4.33332H21.7465C22.1547 4.33332 22.4653 4.51839 22.6783 4.88853C22.8913 5.25867 22.9002 5.63332 22.7049 6.01249L18.9242 12.9458C18.729 13.3069 18.4672 13.5868 18.1388 13.7854C17.8104 13.984 17.451 14.0833 17.0605 14.0833H9.12635L7.95487 16.25H20.7347V18.4167H7.95487C7.15613 18.4167 6.55263 18.0601 6.14439 17.3469C5.73614 16.6337 5.71839 15.925 6.09114 15.2208L7.52887 12.5667L3.69492 4.33332H1.56494V2.16666H5.02615L6.03789 4.33332Z"
-                        fill="#E8EAED"
-                      />
-                    </svg>
-                  }
-                />
-              ) : (
+              <Button
+                text="View All details"
+                onClick={addProductCartHandle}
+                className="bg-black outline-none border-none hover:bg-black/80 transition ease-in-out duration-300 h-12 rounded-xl text-[30px] text-white flex"
+              />
+              {checkInCartHandle(brandId, product.id) && (
                 <Button
                   text="Remove from cart"
                   onClick={handleRemoveProduct}
