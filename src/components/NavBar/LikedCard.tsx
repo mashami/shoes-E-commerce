@@ -6,6 +6,7 @@ import { addProductCart, handleUpdateLiked } from "@/utils/actions";
 import { useRouter } from "next/navigation";
 import { ProductTypes } from "@/utils/types";
 import { toast } from "sonner";
+import { useAppContext } from "@/utils/context/AppContext";
 
 interface LikedCardProps {
   imageUrl: string;
@@ -26,9 +27,9 @@ const LikedCard = ({
   price,
   description,
   productName,
-  product,
 }: LikedCardProps) => {
   const router = useRouter();
+  const { openingCartHandle } = useAppContext();
 
   const removeHandle = () => {
     handleUpdateLiked({ brandId: brandId, productId: id });
@@ -36,15 +37,7 @@ const LikedCard = ({
   };
 
   const addProductCartHandle = () => {
-    addProductCart({
-      brandId: brandId,
-      brandName: brandName,
-      product: product,
-    });
-
-    toast("Product add in cart successfull");
-
-    router.refresh();
+    openingCartHandle({ brandId, productId: id });
   };
 
   return (

@@ -3,9 +3,9 @@
 import React, { useState } from "react";
 import Card from "./Card";
 import { ProductTypes } from "@/utils/types";
-import { ShoesItemDialog } from "../ShoesItem";
-
 import ViewItemDialog from "./ViewItemDialog";
+import { useAppContext } from "@/utils/context/AppContext";
+import { CartDialog } from "../CartDialog";
 
 interface MainCardProps {
   brandName: string;
@@ -14,9 +14,8 @@ interface MainCardProps {
 }
 
 const MainCard = ({ brandName, product, brandId }: MainCardProps) => {
-  const [openDialog, setOpenDialog] = useState<boolean>(false);
   const [isViewItemOpen, setIsViewItemOpen] = useState<boolean>(false);
-  const [dataFilled, setDataFilled] = useState<ProductTypes | null>(null);
+  const { dataFilled } = useAppContext();
 
   return (
     <>
@@ -28,8 +27,6 @@ const MainCard = ({ brandName, product, brandId }: MainCardProps) => {
               <Card
                 openViewDialog={isViewItemOpen}
                 setOpenViewDialog={setIsViewItemOpen}
-                setDataFilled={setDataFilled}
-                setOpenDialog={setOpenDialog}
                 brandId={brandId}
                 product={productItem}
                 brandName={brandName}
@@ -40,18 +37,15 @@ const MainCard = ({ brandName, product, brandId }: MainCardProps) => {
       </div>
 
       {dataFilled && (
-        <ShoesItemDialog
+        <CartDialog
           brandName={brandName}
           brandId={brandId}
           product={dataFilled}
-          openDialog={openDialog}
-          setOpenDialog={setOpenDialog}
         />
       )}
 
       {dataFilled && (
         <ViewItemDialog
-          setIsCartOpen={setOpenDialog}
           brandName={brandName}
           brandId={brandId}
           product={dataFilled}

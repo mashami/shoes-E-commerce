@@ -73,7 +73,7 @@ const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
                 </h1>
                 <p className="text-[12px]">
                   By placing your order, you agree to storelo in’s Privacy and
-                  policy .{" "}
+                  policy .
                 </p>
               </div>
               <ScrollArea className="h-[600px] w-full py-4 hide-scrollbar">

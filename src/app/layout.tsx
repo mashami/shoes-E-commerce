@@ -3,7 +3,9 @@ import "/src/styles/globals.scss";
 import NavBar from "@/components/NavBar/NavBar";
 import { cn } from "@/lib/utils";
 import { Bricolage_Grotesque } from "next/font/google";
-import { Toaster } from "@/components/ui/sonner";
+// import { Toaster } from "@/components/ui/sonner";
+import { AppContextProvider } from "@/utils/context/AppContext";
+import { Toaster } from "@/components/ui/toaster";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
@@ -24,14 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={cn(`${bricolage.variable} font-bricolage`)}>
-        <main>
-          <div className="fixed w-full top-0 right-0 px-[50px] bg-white z-50">
-            <NavBar />
-          </div>
+        <AppContextProvider>
+          <main>
+            <div className="fixed w-full top-0 right-0 px-[50px] bg-white z-50">
+              <NavBar />
+            </div>
 
-          <div className="pt-20 container py-6">{children}</div>
-        </main>
-        <Toaster />
+            <div className="pt-20 container py-6">{children}</div>
+          </main>
+          <Toaster />
+        </AppContextProvider>
       </body>
     </html>
   );
