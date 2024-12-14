@@ -191,6 +191,7 @@ const ViewItemDialog = ({
               {product.pictures.map((pic, i) => (
                 <div
                   key={i}
+                  // onClick={() => setCurrentIndex(i)}
                   className={cn(
                     "h-[85px] w-full rounded-lg relative overflow-hidden border-[0.5px] border-transparent select-none",
                     i === currentIndex && "border-[#9A77FF]"
