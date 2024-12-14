@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -11,10 +11,9 @@ import {
   addProductCart,
   checkInCartHandle,
   handleUpdateLiked,
-  removeProductCart,
+  removeProductCart
 } from "@/utils/actions";
 import { useToast } from "@/hooks/use-toast";
-import { toast } from "sonner";
 import { useAppContext } from "@/utils/context/AppContext";
 
 interface ShoesItemDialogProps {
@@ -33,11 +32,11 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
     addProductCart({
       brandId: brandId,
       brandName: brandName,
-      product: product,
+      product: product
     });
     toast({
       title: "Product add in cart successfull",
-      className: "w-fit",
+      className: "w-fit"
     });
     router.refresh();
   };
@@ -52,7 +51,7 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
     toast({
       variant: "destructive",
       title: "Removed product in cart successfull",
-      className: "w-fit",
+      className: "w-fit"
     });
 
     router.refresh();
@@ -69,7 +68,7 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
                 alt="Shoes-image"
                 fill
                 style={{
-                  objectFit: "cover",
+                  objectFit: "cover"
                 }}
               />
             </div>
@@ -85,7 +84,7 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
                     alt="Shoes-image"
                     fill
                     style={{
-                      objectFit: "cover",
+                      objectFit: "cover"
                     }}
                     className=""
                   />
@@ -203,7 +202,7 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
                         <div
                           key={index}
                           style={{
-                            background: `${color}`,
+                            background: `${color}`
                           }}
                           className={cn("w-5 h-5 rounded-full")}
                         ></div>
@@ -225,7 +224,7 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
                             boxShadow:
                               size === sizeValue
                                 ? "0px 0px 0px 0.694px rgba(179, 153, 255, 0.50)"
-                                : "none",
+                                : "none"
                           }}
                           key={index}
                           onClick={() => setSizeValue(size)}

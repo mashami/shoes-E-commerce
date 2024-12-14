@@ -5,7 +5,7 @@ import {
   Dispatch,
   SetStateAction,
   useContext,
-  useState,
+  useState
 } from "react";
 import { findProductProps, ProductTypes } from "../types";
 import { handleFilterShoes } from "../actions";
@@ -38,12 +38,10 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [openCartDialog, setOpenCartDialog] = useState<boolean>(false);
   const [dataFilled, setDataFilled] = useState<ProductTypes | null>(null);
 
-  console.log("openCartDialog ===>", openCartDialog);
-
   const openingCartHandle = ({ productId, brandId }: findProductProps) => {
     const getProduct: ProductTypes | undefined = handleFilterShoes({
       productId,
-      brandId,
+      brandId
     });
     setDataFilled(getProduct || null);
     setOpenCartDialog(true);
@@ -54,7 +52,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setOpenCartDialog,
     openingCartHandle,
     dataFilled,
-    setDataFilled,
+    setDataFilled
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
