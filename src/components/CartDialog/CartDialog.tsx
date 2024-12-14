@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -29,6 +29,12 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
   const [imageIndex, setImageIndex] = useState<number>(0);
   const router = useRouter();
   const { toast } = useToast();
+
+  useEffect(() => {
+    if (openCartDialog === false) {
+      setImageIndex(0);
+    }
+  }, [openCartDialog]);
 
   const addProductCartHandle = () => {
     addProductCart({
