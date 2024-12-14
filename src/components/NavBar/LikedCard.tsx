@@ -2,10 +2,9 @@
 import Image from "next/image";
 import React from "react";
 import { Button } from "../ui/button";
-import { addProductCart, handleUpdateLiked } from "@/utils/actions";
+import { handleUpdateLiked } from "@/utils/actions";
 import { useRouter } from "next/navigation";
 import { ProductTypes } from "@/utils/types";
-import { toast } from "sonner";
 import { useAppContext } from "@/utils/context/AppContext";
 
 interface LikedCardProps {
@@ -26,7 +25,7 @@ const LikedCard = ({
   id,
   price,
   description,
-  productName,
+  productName
 }: LikedCardProps) => {
   const router = useRouter();
   const { openingCartHandle } = useAppContext();
@@ -48,7 +47,7 @@ const LikedCard = ({
           alt="image"
           fill
           style={{
-            objectFit: "cover",
+            objectFit: "cover"
           }}
         />
       </div>

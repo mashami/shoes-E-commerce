@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import React, { useState } from "react";
-import { Button } from "../ui/button";
 import { removeProductCart } from "@/utils/actions";
 import { useRouter } from "next/navigation";
 import { Switch } from "@/components/ui/switch";
@@ -25,7 +24,7 @@ const CartCard = ({
   price,
   description,
   productName,
-  isStayedInCart = true,
+  isStayedInCart = true
 }: LikedCardProps) => {
   const [isStayed, setIsStayed] = useState<boolean>(isStayedInCart);
   const router = useRouter();
@@ -48,7 +47,7 @@ const CartCard = ({
           alt="image"
           fill
           style={{
-            objectFit: "cover",
+            objectFit: "cover"
           }}
         />
       </div>
