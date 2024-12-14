@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { ProductTypes } from "@/utils/types";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 import {
   addProductCart,
   checkInCartHandle,
@@ -25,6 +26,7 @@ interface ShoesItemDialogProps {
 const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
   const [sizeValue, setSizeValue] = useState<number>();
   const { openCartDialog, setOpenCartDialog } = useAppContext();
+  const [imageIndex, setImageIndex] = useState<number>(0);
   const router = useRouter();
   const { toast } = useToast();
 
@@ -62,33 +64,63 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
       <DialogContent className="max-w-[730px] bg-[#F0E8E8] grid grid-cols-2 gap-4 rounded-xl outline-none">
         {product.pictures && (
           <div className="space-y-4">
-            <div className="h-[340px] w-full rounded-xl relative overflow-hidden">
-              <Image
-                src={product.pictures[0]}
-                alt="Shoes-image"
-                fill
-                style={{
-                  objectFit: "cover"
-                }}
-              />
+            <div
+              className="h-[340px] w-full rounded-xl relative overflow-hidden border border-[#C599FF]"
+              style={{ boxShadow: "0px 0px 0px 2px rgba(197, 153, 255, 0.30)" }}
+            >
+              <motion.div
+                key={imageIndex}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.5 }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={product.pictures[imageIndex]}
+                  alt="Shoes-image"
+                  fill
+                  style={{
+                    objectFit: "cover"
+                  }}
+                />
+              </motion.div>
             </div>
 
-            <div className="grid grid-cols-3 gap-2 w-full">
-              {product.pictures.slice(1).map((pic, i) => (
-                <div
+            <div className="grid grid-cols-4 gap-2 w-full">
+              {product.pictures.map((pic, i) => (
+                <motion.div
                   key={i}
-                  className="h-[85px] w-full rounded-lg relative overflow-hidden"
+                  transition={{ duration: 0.3 }}
+                  whileHover={{ scale: 1.05 }}
+                  onClick={() => setImageIndex(i)}
+                  className={cn(
+                    "h-[85px] w-full rounded-lg relative overflow-hidden cursor-pointer border border-transparent hover:scale-105"
+                  )}
+                  initial={false}
+                  animate={{
+                    borderColor: i === imageIndex ? "#C599FF" : "transparent",
+                    boxShadow:
+                      i === imageIndex
+                        ? "0px 0px 0px 2px rgba(197, 153, 255, 0.30)"
+                        : "none"
+                  }}
+                  style={{
+                    boxShadow:
+                      i === imageIndex
+                        ? "0px 0px 0px 2px rgba(197, 153, 255, 0.30)"
+                        : ""
+                  }}
                 >
                   <Image
                     src={pic}
-                    alt="Shoes-image"
+                    alt="Shoes-thumbnail"
                     fill
                     style={{
                       objectFit: "cover"
                     }}
-                    className=""
                   />
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>

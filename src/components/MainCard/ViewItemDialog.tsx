@@ -1,6 +1,6 @@
 "use client";
 
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
 import { Button } from "../ui/button";
@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import {
   checkInCartHandle,
   handleUpdateLiked,
-  removeProductCart,
+  removeProductCart
 } from "@/utils/actions";
 import { toast } from "sonner";
 import {
@@ -17,9 +17,11 @@ import {
   CarouselContent,
   CarouselItem,
   CarouselNext,
-  CarouselPrevious,
+  CarouselPrevious
 } from "@/components/ui/carousel";
+import { type CarouselApi } from "@/components/ui/carousel";
 import { useAppContext } from "@/utils/context/AppContext";
+import { cn } from "@/lib/utils";
 
 interface ViewItemDialogProps {
   openViewDialog: boolean;
@@ -35,9 +37,15 @@ const ViewItemDialog = ({
   product,
   brandName,
 
-  brandId,
+  brandId
 }: ViewItemDialogProps) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [api, setApi] = React.useState<CarouselApi>();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [count, setCount] = useState(0);
   const router = useRouter();
+  // Store refs for each CarouselItem
+
   const { openingCartHandle } = useAppContext();
 
   const addProductCartHandle = () => {
@@ -57,6 +65,19 @@ const ViewItemDialog = ({
     router.refresh();
   };
 
+  useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    setCount(api.scrollSnapList().length);
+    setCurrentIndex(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrentIndex(api.selectedScrollSnap());
+    });
+  }, [api]);
+
   return (
     <Dialog onOpenChange={setOpenViewDialog} open={openViewDialog}>
       <DialogContent className="max-w-[800px] bg-[#F0E8E8] gap-1 rounded-xl outline-none px-16">
@@ -67,19 +88,19 @@ const ViewItemDialog = ({
         </DialogTitle>
         {product.pictures && (
           <div className="space-y-4">
-            <Carousel>
-              <CarouselContent className="">
+            <Carousel setApi={setApi}>
+              <CarouselContent className="h-[340px]">
                 {product.pictures.map((p, i) => (
                   <CarouselItem
                     key={i}
-                    className="relative h-[340px] w-full rounded-xl overflow-hidden"
+                    className="relative h-full w-full rounded-xl overflow-hidden select-none"
                   >
                     <Image
                       src={p}
                       alt="Shoes-image"
                       fill
                       style={{
-                        objectFit: "cover",
+                        objectFit: "cover"
                       }}
                     />
                   </CarouselItem>
@@ -87,6 +108,7 @@ const ViewItemDialog = ({
               </CarouselContent>
 
               <CarouselPrevious
+                // onClick={handlePrevClick}
                 className="rounded-lg px-4"
                 svg={
                   <svg
@@ -125,6 +147,7 @@ const ViewItemDialog = ({
                 }
               />
               <CarouselNext
+                // onClick={handleNextClick}
                 className="rounded-lg px-4"
                 svg={
                   <svg
@@ -164,18 +187,27 @@ const ViewItemDialog = ({
               />
             </Carousel>
 
-            <div className="grid grid-cols-3 gap-2 w-full">
-              {product.pictures.slice(1).map((pic, i) => (
+            <div className="grid grid-cols-4 gap-2 w-full">
+              {product.pictures.map((pic, i) => (
                 <div
                   key={i}
-                  className="h-[85px] w-full rounded-lg relative overflow-hidden"
+                  className={cn(
+                    "h-[85px] w-full rounded-lg relative overflow-hidden border-[0.5px] border-transparent select-none",
+                    i === currentIndex && "border-[#9A77FF]"
+                  )}
+                  style={{
+                    boxShadow:
+                      i === currentIndex
+                        ? "0px 0px 0px 0.694px rgba(179, 153, 255, 0.9)"
+                        : "none"
+                  }}
                 >
                   <Image
                     src={pic}
                     alt="Shoes-image"
                     fill
                     style={{
-                      objectFit: "cover",
+                      objectFit: "cover"
                     }}
                     className=""
                   />
@@ -185,59 +217,12 @@ const ViewItemDialog = ({
           </div>
         )}
 
-        <div className="">
-          <div className="space-y-1">
-            <div className="space-y-1 text-lg font-thin text-">
-              {product.name}
-            </div>
-
-            {/* {product.color && (
-              <div className="space-y-3">
-                <h1 className="text-[24px] font-semibold">COLOR</h1>
-
-                <div className="flex items-center space-x-4">
-                  {product.color.map((color, index) => {
-                    return (
-                      <div
-                        key={index}
-                        style={{
-                          background: `${color}`,
-                        }}
-                        className={cn("w-5 h-5 rounded-full")}
-                      ></div>
-                    );
-                  })}
-                </div>
-              </div>
-            )}
-
-            {product.size && (
-              <div className="space-y-3">
-                <h1 className="text-[24px] font-semibold">SIZES</h1>
-
-                <div className="flex items-center flex-wrap gap-2">
-                  {product.size.map((size, index) => {
-                    return (
-                      <div
-                        key={index}
-                        className={cn(
-                          "w-[55px] h-[33px]  rounded-sm border border-black/10  bg-white/75 flex items-center justify-center"
-                        )}
-                      >
-                        {size}
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            )} */}
+        <div className="space-y-1">
+          <div className="space-y-1 text-lg font-thin text-[20px] select-none">
+            {product.name}
           </div>
 
           <div className="space-y-3 flex items-center  justify-end">
-            {/* <p className="text-[28px] text-black font-bold">
-              $ {product.price}
-            </p> */}
-
             <div className="flex items-center space-x-3">
               <Button
                 text="View All details"
