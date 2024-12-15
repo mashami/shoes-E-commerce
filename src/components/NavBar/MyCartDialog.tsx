@@ -24,7 +24,7 @@ const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
 
   return (
     <Dialog defaultOpen={true} open={open} onOpenChange={setOpen}>
-      <DialogContent className="grid grid-cols-2 p-0 overflow-hidden min-w-[1000px] min-h-[600px]">
+      <DialogContent className="grid md:grid-cols-2 grid-cols-1 p-0 overflow-hidden md:min-w-[1000px] min-w-full min-h-[600px]">
         <div className="bg-[#E3ECFF] px-5 py-6 space-y-6">
           <DialogTitle>
             <button

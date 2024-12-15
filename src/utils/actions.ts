@@ -283,6 +283,8 @@ export const handleFilterShoes = ({productId, brandId}:findProductProps) => {
 
 
 export const handleUpdateLiked = ({ productId, brandId }: findProductProps) => {
+  // console.log("brandId ===>", brandId);
+  //   console.log("ProductID ====>", productId);
  
   const singleProduct = handleFilterShoes({ productId, brandId });
 
@@ -291,13 +293,7 @@ export const handleUpdateLiked = ({ productId, brandId }: findProductProps) => {
     return;
   }
   singleProduct.liked = !singleProduct.liked;
-
-  console.log(`Updated product liked status: `, singleProduct);
 };
-
-
-
-
 
 
 export const findLikedProducts = (): AllLikedProps[] => {
@@ -336,7 +332,7 @@ export const addProductCart = (product: AllLikedProps) => {
 
   // Add the product to the cart
   cartProducts.push(product);
-  console.log("Product added to the cart:", product);
+  // console.log("Product added to the cart:", product);
 };
 
 

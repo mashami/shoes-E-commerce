@@ -9,17 +9,17 @@ import { Toaster } from "@/components/ui/toaster";
 
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  variable: "--font-bricolage-grotesque",
+  variable: "--font-bricolage-grotesque"
 });
 
 export const metadata: Metadata = {
   title: "Shoes Platform",
   description:
-    "This is platform which going to help customers to buy online shoes",
+    "This is platform which going to help customers to buy online shoes"
 };
 
 export default function RootLayout({
-  children,
+  children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
@@ -28,11 +28,11 @@ export default function RootLayout({
       <body className={cn(`${bricolage.variable} font-bricolage`)}>
         <AppContextProvider>
           <main>
-            <div className="fixed w-full top-0 right-0 px-[50px] bg-white z-50">
+            <div className="fixed w-full top-0 right-0 md:px-[50px] px-2 bg-white z-50">
               <NavBar />
             </div>
 
-            <div className="pt-20 container py-6">{children}</div>
+            <div className="pt-20 md:container px-6 py-6">{children}</div>
           </main>
           <Toaster />
         </AppContextProvider>

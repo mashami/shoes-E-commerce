@@ -5,7 +5,7 @@ import {
   Sheet,
   SheetContent,
   SheetHeader,
-  SheetTitle,
+  SheetTitle
 } from "@/components/ui/sheet";
 import LikedCard from "./LikedCard";
 import { AllLikedProps } from "@/utils/types";
@@ -23,9 +23,7 @@ const LovedSheet = ({ isSheetOpen, setIsSheetOpen }: LovedSheetProps) => {
     <Sheet onOpenChange={setIsSheetOpen} open={isSheetOpen}>
       <SheetContent className="bg-[#E3ECFF] flex flex-col">
         <SheetHeader className="pt-6">
-          <SheetTitle className="uppercase">
-            Those are the liked products
-          </SheetTitle>
+          <SheetTitle className="uppercase">Your favorate products</SheetTitle>
         </SheetHeader>
 
         {allLikedProducts.length > 0 ? (
