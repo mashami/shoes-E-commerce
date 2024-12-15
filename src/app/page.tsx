@@ -2,14 +2,14 @@
 
 import { MainCard } from "@/components/MainCard";
 import {
-  findLikedProducts,
-  getCartProducts,
+  // findLikedProducts,
+  // getCartProducts,
   staticShoesData
 } from "@/utils/actions";
 
 export default function Home() {
-  const all = getCartProducts();
-  const allFavorate = findLikedProducts();
+  // const all = getCartProducts();
+  // const allFavorate = findLikedProducts();
 
   // console.log("all Cart products ==>", all);
 
