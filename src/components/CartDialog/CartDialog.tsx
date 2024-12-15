@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
@@ -15,17 +15,23 @@ import {
   removeProductCart
 } from "@/utils/actions";
 import { useToast } from "@/hooks/use-toast";
-import { useAppContext } from "@/utils/context/AppContext";
 
 interface ShoesItemDialogProps {
   product: ProductTypes;
   brandId: string;
   brandName: string;
+  openCartDialog: boolean;
+  setOpenCartDialog: Dispatch<React.SetStateAction<boolean>>;
 }
 
-const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
-  const [sizeValue, setSizeValue] = useState<number>();
-  const { openCartDialog, setOpenCartDialog } = useAppContext();
+const CartDialog = ({
+  product,
+  brandName,
+  brandId,
+  openCartDialog,
+  setOpenCartDialog
+}: ShoesItemDialogProps) => {
+  const [sizeValue, setSizeValue] = useState<number | undefined>(undefined);
   const [imageIndex, setImageIndex] = useState<number>(0);
   const router = useRouter();
   const { toast } = useToast();
@@ -33,10 +39,13 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
   useEffect(() => {
     if (openCartDialog === false) {
       setImageIndex(0);
+      setSizeValue(undefined);
     }
   }, [openCartDialog]);
 
   const addProductCartHandle = () => {
+    console.log("brandId ===>", brandId);
+    console.log("ProductID ====>", product.id);
     addProductCart({
       brandId: brandId,
       brandName: brandName,
@@ -50,11 +59,14 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
   };
 
   const handleFavorateChanges = () => {
-    handleUpdateLiked({ brandId, productId: product.id });
+    handleUpdateLiked({ brandId: brandId, productId: product.id });
+
     router.refresh();
   };
 
   const removeFromCartHandle = () => {
+    console.log("brandId ===>", brandId);
+    console.log("ProductID ====>", product.id);
     removeProductCart({ brandId, productId: product.id });
     toast({
       variant: "destructive",
@@ -67,12 +79,14 @@ const CartDialog = ({ product, brandName, brandId }: ShoesItemDialogProps) => {
 
   return (
     <Dialog onOpenChange={setOpenCartDialog} open={openCartDialog}>
-      <DialogContent className="max-w-[730px] bg-[#F0E8E8] grid grid-cols-2 gap-4 rounded-xl outline-none">
+      <DialogContent className="md:max-w-[730px] w-full bg-[#F0E8E8] grid md:grid-cols-2 grid-cols-1 gap-4 rounded-xl outline-none ">
         {product.pictures && (
           <div className="space-y-4">
             <div
               className="h-[340px] w-full rounded-xl relative overflow-hidden border border-[#C599FF]"
-              style={{ boxShadow: "0px 0px 0px 2px rgba(197, 153, 255, 0.30)" }}
+              style={{
+                boxShadow: "0px 0px 0px 2px rgba(197, 153, 255, 0.30)"
+              }}
             >
               <motion.div
                 key={imageIndex}

@@ -36,7 +36,6 @@ const ViewItemDialog = ({
   setOpenViewDialog,
   product,
   brandName,
-
   brandId
 }: ViewItemDialogProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -47,6 +46,8 @@ const ViewItemDialog = ({
   // Store refs for each CarouselItem
 
   const { openingCartHandle } = useAppContext();
+
+  // console.log("herrrrrr brand id ====>", brandId);
 
   const addProductCartHandle = () => {
     openingCartHandle({ brandId, productId: product.id });
@@ -80,7 +81,7 @@ const ViewItemDialog = ({
 
   return (
     <Dialog onOpenChange={setOpenViewDialog} open={openViewDialog}>
-      <DialogContent className="max-w-[800px] bg-[#F0E8E8] gap-1 rounded-xl outline-none px-16">
+      <DialogContent className="max-w-[800px] bg-[#F0E8E8] gap-1 rounded-xl outline-none md:px-16 px-12">
         <DialogTitle>
           <p className="text-[32px] text-black font-bold uppercase">
             {brandName}
