@@ -44,8 +44,8 @@ const CartDialog = ({
   }, [openCartDialog]);
 
   const addProductCartHandle = () => {
-    console.log("brandId ===>", brandId);
-    console.log("ProductID ====>", product.id);
+    // console.log("brandId ===>", brandId);
+    // console.log("ProductID ====>", product.id);
     addProductCart({
       brandId: brandId,
       brandName: brandName,
@@ -65,8 +65,8 @@ const CartDialog = ({
   };
 
   const removeFromCartHandle = () => {
-    console.log("brandId ===>", brandId);
-    console.log("ProductID ====>", product.id);
+    // console.log("brandId ===>", brandId);
+    // console.log("ProductID ====>", product.id);
     removeProductCart({ brandId, productId: product.id });
     toast({
       variant: "destructive",

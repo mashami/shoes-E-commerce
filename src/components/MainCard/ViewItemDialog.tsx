@@ -8,6 +8,7 @@ import { ProductTypes } from "@/utils/types";
 import { useRouter } from "next/navigation";
 import {
   checkInCartHandle,
+  getProductDetails,
   handleUpdateLiked,
   removeProductCart
 } from "@/utils/actions";
@@ -29,6 +30,7 @@ interface ViewItemDialogProps {
   product: ProductTypes;
   brandId: string;
   brandName: string;
+  setOpen: Dispatch<SetStateAction<boolean>>;
 }
 
 const ViewItemDialog = ({
@@ -36,7 +38,8 @@ const ViewItemDialog = ({
   setOpenViewDialog,
   product,
   brandName,
-  brandId
+  brandId,
+  setOpen
 }: ViewItemDialogProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = React.useState<CarouselApi>();
@@ -45,13 +48,18 @@ const ViewItemDialog = ({
   const router = useRouter();
   // Store refs for each CarouselItem
 
-  const { openingCartHandle } = useAppContext();
+  const { setDataFilled } = useAppContext();
 
-  // console.log("herrrrrr brand id ====>", brandId);
+  const viewProductViewHandle = () => {
+    const getProduct = getProductDetails({ brandId, productId: product.id });
 
-  const addProductCartHandle = () => {
-    openingCartHandle({ brandId, productId: product.id });
-    router.refresh();
+    if (getProduct) {
+      setDataFilled(getProduct);
+      setOpenViewDialog(false);
+      setOpen(true);
+      // openingCartHandle({ brandId, productId: product.id });
+      router.refresh();
+    } else return;
   };
 
   const handleFavorateChanges = () => {
@@ -228,7 +236,7 @@ const ViewItemDialog = ({
             <div className="flex items-center space-x-3">
               <Button
                 text="View All details"
-                onClick={addProductCartHandle}
+                onClick={viewProductViewHandle}
                 className="bg-black outline-none border-none hover:bg-black/80 transition ease-in-out duration-300 h-12 rounded-xl text-[30px] text-white flex"
               />
               {checkInCartHandle(brandId, product.id) && (

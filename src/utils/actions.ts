@@ -340,6 +340,17 @@ export const getCartProducts = (): AllLikedProps[] => {
   return cartProducts;
 };
 
+ export const getProductDetails = ({brandId,productId}:findProductProps) => {
+ const getProduct: ProductTypes | undefined = handleFilterShoes({
+      productId,
+      brandId
+    })
+   
+    return getProduct
+  }
+
+
+
 
 
 

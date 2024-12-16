@@ -60,7 +60,7 @@ const NavBar = () => {
 
           <div
             onClick={() => setIsMyCartDialogOpen(true)}
-            className="md:flex hidden items-center space-x-3 py-2 px-4  rounded-full border border-black/20 cursor-pointer select-none"
+            className="lg:flex hidden items-center space-x-3 py-2 px-4  rounded-full border border-black/20 cursor-pointer select-none"
           >
             <svg
               width={22}
@@ -87,7 +87,7 @@ const NavBar = () => {
             content="My favorates"
             onClick={() => setOpenSheet(true)}
           >
-            <div className="p-3 rounded-full border border-black/20 cursor-pointer md:block hidden">
+            <div className="p-3 rounded-full border border-black/20 cursor-pointer lg:block hidden">
               <svg
                 width={16}
                 height={15}
@@ -105,7 +105,7 @@ const NavBar = () => {
           </TooltipComp>
         </div>
 
-        <div className="md:flex hidden items-center space-x-2 ">
+        <div className="lg:flex hidden items-center space-x-2 ">
           <Button
             text="Sign in"
             className="text-white bg-blue-500 hover:bg-blue-500/80 transition ease-in-out duration-300"
@@ -140,7 +140,7 @@ const NavBar = () => {
         </div>
 
         <DropdownMenu>
-          <DropdownMenuTrigger className="md:hidden block">
+          <DropdownMenuTrigger className="lg:hidden block outline-none">
             <svg
               width={37}
               height={28}
@@ -171,7 +171,69 @@ const NavBar = () => {
               </defs>
             </svg>
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
+          <DropdownMenuContent className="absolute top-4 -right-4 w-[170px]">
+            <DropdownMenuItem>
+              <div className="flex items-center justify-between space-x-3 p-2  rounded-xl w-full border border-black/20 cursor-pointer select-none bg-blue-600">
+                <p className="font-bold font-bricolage text-white">Sign in</p>
+
+                <svg
+                  width={30}
+                  height={30}
+                  viewBox="0 0 30 30"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlnsXlink="http://www.w3.org/1999/xlink"
+                >
+                  <rect width={30} height={30} fill="url(#pattern0_109_736)" />
+                  <defs>
+                    <pattern
+                      id="pattern0_109_736"
+                      patternContentUnits="objectBoundingBox"
+                      width={1}
+                      height={1}
+                    >
+                      <use
+                        xlinkHref="#image0_109_736"
+                        transform="scale(0.0333333)"
+                      />
+                    </pattern>
+                    <image
+                      id="image0_109_736"
+                      width={30}
+                      height={30}
+                      xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAjUlEQVR4nO3WTQqAIBBAYY/Tola1qwNU144uklDUJV4ILvsbE4XybW38YKBIqVTsgB7QuGdmOxdY877JBfZSgm/zs+iPrLoGKmANDZf2PH+C+4Q3oLDPZMAcChbhV8AoGji+o3KBhyjwWchWvYSAt6foZ16nJtYHRFSCb/vlqnWsn73ODL5BgVYMp5TndnyOZgYIV7JsAAAAAElFTkSuQmCC"
+                    />
+                  </defs>
+                </svg>
+              </div>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem>
+              <div className="flex items-center justify-between space-x-3 p-2  rounded-xl w-full border border-black/20 cursor-pointer select-none">
+                <p className="font-bold font-bricolage">Sign up</p>
+
+                <svg
+                  width={16}
+                  height={16}
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <g clipPath="url(#clip0_36_41)">
+                    <path
+                      d="M9.33332 9.50135V10.8947C8.72994 10.6814 8.08417 10.6159 7.45026 10.7039C6.81634 10.7918 6.21279 11.0306 5.69028 11.4002C5.16777 11.7697 4.74155 12.2592 4.44743 12.8276C4.15331 13.396 3.99987 14.0267 3.99999 14.6667L2.66666 14.666C2.66645 13.8519 2.8526 13.0486 3.21086 12.3176C3.56911 11.5866 4.08995 10.9473 4.73347 10.4487C5.37699 9.95011 6.12611 9.60544 6.92343 9.44112C7.72074 9.27679 8.5451 9.29717 9.33332 9.50069V9.50135ZM7.99999 8.66669C5.78999 8.66669 3.99999 6.87669 3.99999 4.66669C3.99999 2.45669 5.78999 0.666687 7.99999 0.666687C10.21 0.666687 12 2.45669 12 4.66669C12 6.87669 10.21 8.66669 7.99999 8.66669ZM7.99999 7.33335C9.47332 7.33335 10.6667 6.14002 10.6667 4.66669C10.6667 3.19335 9.47332 2.00002 7.99999 2.00002C6.52666 2.00002 5.33332 3.19335 5.33332 4.66669C5.33332 6.14002 6.52666 7.33335 7.99999 7.33335ZM12.9453 11.3334H15.336V12.6667H12.9453L14.1647 13.8854L13.222 14.8287L10.3933 12L13.222 9.17135L14.1647 10.1147L12.9453 11.3334Z"
+                      fill="#5B5B5B"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="clip0_36_41">
+                      <rect width={16} height={16} fill="white" />
+                    </clipPath>
+                  </defs>
+                </svg>
+              </div>
+            </DropdownMenuItem>
+
             <DropdownMenuItem>
               <div
                 onClick={() => setOpenSheet(true)}
@@ -200,6 +262,7 @@ const NavBar = () => {
                 className="flex items-center justify-between space-x-3 p-2  rounded-xl w-full border border-black/20 cursor-pointer select-none"
               >
                 <p className="font-bold font-bricolage">My cart</p>
+
                 <svg
                   width={22}
                   height={20}
