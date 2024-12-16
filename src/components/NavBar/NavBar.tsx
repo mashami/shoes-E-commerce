@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import { Button } from "../ui/button";
 import LovedSheet from "./LovedSheet";
@@ -49,10 +48,7 @@ const NavBar = () => {
         </div>
 
         <div className="flex items-center space-x-5">
-          <form
-            // onSubmit={searchHandle}
-            className="flex items-center space-x-3 py-2 px-4 rounded-full border border-black/20"
-          >
+          <form className="flex items-center space-x-3 py-2 px-4 rounded-full border border-black/20">
             <svg
               width={14}
               height={14}
@@ -68,7 +64,8 @@ const NavBar = () => {
             <input
               value={searchValue}
               onChange={(e) => {
-                handleSearch(e.target.value), setSearchValue(e.target.value);
+                handleSearch(e.target.value);
+                setSearchValue(e.target.value);
               }}
               type="text"
               placeholder="Search category of shoes"
