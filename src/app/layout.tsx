@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={cn(`${bricolage.variable} font-bricolage`)}>
         <AppContextProvider>
           <main>
-            <div className="fixed w-full top-0 right-0 md:px-[50px] px-2 bg-white z-50">
+            <div className="fixed w-full top-0 right-0 xl:px-[50px] px-2 bg-white z-50">
               <NavBar />
             </div>
 
