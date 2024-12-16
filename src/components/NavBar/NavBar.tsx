@@ -11,10 +11,21 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { useAppContext } from "@/utils/context/AppContext";
 
 const NavBar = () => {
   const [openSheet, setOpenSheet] = useState<boolean>(false);
   const [isMycartDialogOpen, setIsMyCartDialogOpen] = useState<boolean>(false);
+
+  const { handleSearch, setSearchValue, searchValue } = useAppContext();
+
+  // const searchHandle = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   // if (searchValue.trim()) {
+  //   handleSearch(searchValue);
+  //   // }
+  // };
+
   return (
     <>
       <div className="flex items-center justify-between py-4">
@@ -38,7 +49,10 @@ const NavBar = () => {
         </div>
 
         <div className="flex items-center space-x-5">
-          <div className="flex items-center space-x-3 py-2 px-4 rounded-full border border-black/20">
+          <form
+            // onSubmit={searchHandle}
+            className="flex items-center space-x-3 py-2 px-4 rounded-full border border-black/20"
+          >
             <svg
               width={14}
               height={14}
@@ -52,11 +66,15 @@ const NavBar = () => {
               />
             </svg>
             <input
+              value={searchValue}
+              onChange={(e) => {
+                handleSearch(e.target.value), setSearchValue(e.target.value);
+              }}
               type="text"
               placeholder="Search category of shoes"
               className="outline-none md:min-w-[220px] min-w-[100px]"
             />
-          </div>
+          </form>
 
           <div
             onClick={() => setIsMyCartDialogOpen(true)}

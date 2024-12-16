@@ -11,7 +11,7 @@ export interface ProductTypes{
 
 }
 
-export interface ShoesType{
+export interface ShoesType {
     id:string
     brandName:string
     product:ProductTypes[]

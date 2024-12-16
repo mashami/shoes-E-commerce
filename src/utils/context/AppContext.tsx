@@ -7,8 +7,8 @@ import {
   useContext,
   useState
 } from "react";
-import { findProductProps, ProductTypes } from "../types";
-import { handleFilterShoes } from "../actions";
+import { findProductProps, ProductTypes, ShoesType } from "../types";
+import { handleFilterShoes, searchProduct, staticShoesData } from "../actions";
 
 interface AppContextData {
   setOpenCartDialog: Dispatch<React.SetStateAction<boolean>>;
@@ -16,6 +16,10 @@ interface AppContextData {
   openingCartHandle: ({ productId, brandId }: findProductProps) => void;
   dataFilled: ProductTypes | null;
   setDataFilled: Dispatch<SetStateAction<ProductTypes | null>>;
+  filteredShoes: ShoesType[];
+  handleSearch: (value: string) => void;
+  searchValue: string;
+  setSearchValue: Dispatch<SetStateAction<string>>;
 }
 
 const AppContext = createContext<AppContextData | null>(null);
@@ -37,6 +41,9 @@ interface AppContextProviderProps {
 export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [openCartDialog, setOpenCartDialog] = useState<boolean>(false);
   const [dataFilled, setDataFilled] = useState<ProductTypes | null>(null);
+  const [filteredShoes, setFilteredShoes] =
+    useState<ShoesType[]>(staticShoesData);
+  const [searchValue, setSearchValue] = useState<string>("");
 
   const openingCartHandle = ({ productId, brandId }: findProductProps) => {
     const getProduct: ProductTypes | undefined = handleFilterShoes({
@@ -47,8 +54,21 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setOpenCartDialog(true);
   };
 
+  const handleSearch = (keyword: string) => {
+    if (searchValue) {
+      const result = searchProduct(keyword);
+      setFilteredShoes(result?.length > 0 ? result : staticShoesData);
+    } else {
+      setFilteredShoes(staticShoesData);
+    }
+  };
+
   const value: AppContextData = {
     openCartDialog,
+    searchValue,
+    setSearchValue,
+    handleSearch,
+    filteredShoes,
     setOpenCartDialog,
     openingCartHandle,
     dataFilled,
