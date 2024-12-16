@@ -315,6 +315,32 @@ export const findLikedProducts = (): AllLikedProps[] => {
 };
 
 
+export const searchProduct = (keyword: string): ShoesType[] => {
+  const lowerCaseKeyword = keyword.toLowerCase();
+
+  return staticShoesData
+    .map((brand) => {
+      
+      const filteredProducts = brand.product.filter((product) =>
+        product.name.toLowerCase().includes(lowerCaseKeyword)
+      );
+
+      // If the brandName or any product matches, include the result
+      if (
+        brand.brandName.toLowerCase().includes(lowerCaseKeyword) ||
+        filteredProducts.length > 0
+      ) {
+        return {
+          ...brand,
+          product: filteredProducts, // Only include matched products
+        };
+      }
+      return null;
+    })
+    .filter((brand) => brand !== null); // Remove null values
+};
+
+
 
 export const cartProducts: AllLikedProps[] = [];
 

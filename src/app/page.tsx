@@ -1,23 +1,14 @@
 "use client";
 
 import { MainCard } from "@/components/MainCard";
-import {
-  // findLikedProducts,
-  // getCartProducts,
-  staticShoesData
-} from "@/utils/actions";
+import { useAppContext } from "@/utils/context/AppContext";
 
 export default function Home() {
-  // const all = getCartProducts();
-  // const allFavorate = findLikedProducts();
-
-  // console.log("all Cart products ==>", all);
-
-  // console.log("Get all favorates products ===>", allFavorate);
+  const { filteredShoes } = useAppContext();
 
   return (
     <div className="space-y-12">
-      {staticShoesData.map((shoes) => (
+      {filteredShoes.map((shoes) => (
         <MainCard
           key={shoes.id}
           brandId={shoes.id}
