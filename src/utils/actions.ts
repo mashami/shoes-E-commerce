@@ -1,5 +1,8 @@
+
+
 import { toast } from "@/hooks/use-toast";
 import { AllLikedProps, CartProductProps, findProductProps, ProductTypes, ShoesType } from "./types";
+
 
 export const staticShoesData: ShoesType[] = [
   {
@@ -324,19 +327,19 @@ export const searchProduct = (keyword: string): ShoesType[] => {
         product.name.toLowerCase().includes(lowerCaseKeyword)
       );
 
-      // If the brandName or any product matches, include the result
+      
       if (
         brand.brandName.toLowerCase().includes(lowerCaseKeyword) ||
         filteredProducts.length > 0
       ) {
         return {
           ...brand,
-          product: filteredProducts, // Only include matched products
+          product: filteredProducts, 
         };
       }
       return null;
     })
-    .filter((brand) => brand !== null); // Remove null values
+    .filter((brand) => brand !== null); 
 };
 
 
@@ -388,11 +391,20 @@ export const removeProductCart = ({productId,brandId}:findProductProps) => {
   );
 
   if (productIndex === -1) {
-    console.warn("Product not found in the cart.");
+    toast({
+      variant:"destructive",
+      title: "Not found",
+      className: "w-fit"
+    });
     return;
   }
 
-  return cartProducts.splice(productIndex, 1);
+  return  cartProducts.splice(productIndex, 1),
+    toast({
+      title: "Product has been deleted successfull",
+      className: "w-fit"
+    });
+  
 };
 
 

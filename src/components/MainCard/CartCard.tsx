@@ -1,47 +1,38 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
-import { removeProductCart } from "@/utils/actions";
-import { useRouter } from "next/navigation";
 import { Switch } from "@/components/ui/switch";
-import { CartProductProps } from "@/utils/types";
+import { CartProductProps, findProductProps } from "@/utils/types";
 
 interface LikedCartProps {
   cartProduct: CartProductProps;
+  switchFunction: ({ brandId, productId }: findProductProps) => void;
+  deleteFunction: ({ brandId, productId }: findProductProps) => void;
 }
 
-const CartCard = ({ cartProduct }: LikedCartProps) => {
-  const router = useRouter();
-  const [product, setProduct] = useState<CartProductProps>(cartProduct);
-
-  const removeHandle = (e: React.MouseEvent<HTMLParagraphElement>) => {
-    e.stopPropagation();
-    removeProductCart({
-      brandId: product.brandId,
-      productId: product.product.id
+const CartCard = ({
+  cartProduct,
+  deleteFunction,
+  switchFunction
+}: LikedCartProps) => {
+  const removeHandle = () => {
+    deleteFunction({
+      brandId: cartProduct.brandId,
+      productId: cartProduct.product.id
     });
-
-    router.refresh();
   };
 
-  const switchHandle = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-
-    setProduct((prev) => ({
-      ...prev,
-      onOrder: !prev.onOrder
-    }));
-
-    router.refresh();
+  const switchHandle = () => {
+    switchFunction({
+      brandId: cartProduct.brandId,
+      productId: cartProduct.product.id
+    });
   };
-
-  console.log("product ===>", product);
 
   return (
     <div className="grid grid-cols-3 gap-3 p-3 bg-white rounded-2xl relative overflow-hidden group">
       <div className="relative w-full min-h-[100px] rounded-xl overflow-hidden">
         <Image
-          src={product.product.pictures[0]}
+          src={cartProduct.product.pictures[0]}
           alt="image"
           fill
           style={{
@@ -53,14 +44,18 @@ const CartCard = ({ cartProduct }: LikedCartProps) => {
       <div className="col-span-2 flex flex-col space-y-1  justify-between">
         <div className="flex items-start justify-between space-x-2">
           <div className="space-y-0">
-            <p className="font-extrabold text-black">{product.brandName}</p>
-            <p className="text-[12px] text-[#1E1818]">{product.product.name}</p>
+            <p className="font-extrabold text-black">{cartProduct.brandName}</p>
+            <p className="text-[12px] text-[#1E1818]">
+              {cartProduct.product.name}
+            </p>
           </div>
 
-          <p className="text-[18px] font-bold">${product.totalPrice}</p>
+          <p className="text-[18px] font-bold">${cartProduct.totalPrice}</p>
         </div>
-        {product.product.description && (
-          <p className="text-[12px] leading-4">{product.product.description}</p>
+        {cartProduct.product.description && (
+          <p className="text-[12px] leading-4">
+            {cartProduct.product.description}
+          </p>
         )}
 
         <div className="flex items-center justify-between">
@@ -72,7 +67,7 @@ const CartCard = ({ cartProduct }: LikedCartProps) => {
               onClick={switchHandle}
             >
               <Switch
-                checked={product.onOrder}
+                checked={cartProduct.onOrder}
                 onCheckedChange={() => switchHandle}
               />
             </div>
