@@ -6,8 +6,6 @@ interface PaymentFormProps {
   totalAmount: number;
 }
 const PaymentForm = ({ totalAmount }: PaymentFormProps) => {
-  console.log("Amount ====>", totalAmount);
-
   return (
     <form className="max-w-md mx-auto p-4 space-y-4 flex flex-col justify-center">
       <h2 className="text-lg font-semibold">Payment details</h2>
