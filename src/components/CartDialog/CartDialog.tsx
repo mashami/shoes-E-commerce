@@ -31,25 +31,38 @@ const CartDialog = ({
   openCartDialog,
   setOpenCartDialog
 }: ShoesItemDialogProps) => {
-  const [sizeValue, setSizeValue] = useState<number | undefined>(undefined);
+  const [sizeValue, setSizeValue] = useState<number>(product.size[0]);
   const [imageIndex, setImageIndex] = useState<number>(0);
+  const [color, setColor] = useState<string>(product.color[0]);
+  const [itemsNumber, setItemsNumber] = useState<number>(1);
   const router = useRouter();
   const { toast } = useToast();
+  const [price, setPrice] = useState<number>(product.price);
 
   useEffect(() => {
     if (openCartDialog === false) {
       setImageIndex(0);
-      setSizeValue(undefined);
+      setSizeValue(product.size[0]);
+      setColor(product.color[0]);
+      setItemsNumber(1);
+      setPrice(product.price);
     }
   }, [openCartDialog]);
 
+  useEffect(() => {
+    setPrice(itemsNumber * product.price);
+  }, [itemsNumber]);
+
   const addProductCartHandle = () => {
-    // console.log("brandId ===>", brandId);
-    // console.log("ProductID ====>", product.id);
     addProductCart({
       brandId: brandId,
       brandName: brandName,
-      product: product
+      product: product,
+      color: color,
+      size: sizeValue,
+      itemsNumber: itemsNumber,
+      totalPrice: price,
+      onOrder: true
     });
     toast({
       title: "Product add in cart successfull",
@@ -65,8 +78,6 @@ const CartDialog = ({
   };
 
   const removeFromCartHandle = () => {
-    // console.log("brandId ===>", brandId);
-    // console.log("ProductID ====>", product.id);
     removeProductCart({ brandId, productId: product.id });
     toast({
       variant: "destructive",
@@ -240,24 +251,147 @@ const CartDialog = ({
             </div>
 
             <div>
-              <p className="text-[28px] text-black font-bold">
-                $ {product.price}
-              </p>
+              <div className="flex items-center justify-between">
+                <p className="text-[28px] text-black font-bold">$ {price}</p>
+
+                <div className="flex  items-center space-x-2">
+                  <p className="text-[20px] text-black font-medium">Pairs</p>
+                  <div className="flex items-center space-x-2">
+                    <button
+                      onClick={() => {
+                        setItemsNumber((prev) => prev - 1);
+                      }}
+                      disabled={itemsNumber === 1}
+                      className={cn(
+                        "border-[#9A77FF] border rounded-full",
+                        itemsNumber === 1 && "border-transparent"
+                      )}
+                      style={{
+                        boxShadow: "0px 0px 0px 2px rgba(197, 153, 255, 0.30)"
+                      }}
+                    >
+                      <svg
+                        width={30}
+                        height={30}
+                        viewBox="0 0 30 30"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                      >
+                        <rect
+                          width={30}
+                          height={30}
+                          fill="url(#pattern0_113_740)"
+                        />
+                        <defs>
+                          <pattern
+                            id="pattern0_113_740"
+                            patternContentUnits="objectBoundingBox"
+                            width={1}
+                            height={1}
+                          >
+                            <use
+                              xlinkHref="#image0_113_740"
+                              transform="scale(0.0333333)"
+                            />
+                          </pattern>
+                          <image
+                            id="image0_113_740"
+                            width={30}
+                            height={30}
+                            xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABFElEQVR4nO2WT0rDQBTGf5dwYU1Kz2H1AIINvUa1rWdxZ6m4cOm+f26SiKew6a4tSuAFgqSTN5OMZJEPvk0g/HjfvHlvoFML1QdmwBZIgL04kW9TIGwSeAUsgCPwU+ET8AEM6kLHQKoA/vUOiFyhT1KBLbRY/dyl0lMNaBGurjxwjNcUe08DfmsQmnupuTKa7rX1UZI8q7kHaO5HE3jjEbwygb88ghMTeFfywzX2ujnT3VbgIfa6tQV/eow6bmVzTT2CJyZw6GmAHKoGSKZXD+AXlIu/rLtd/Q1cotRdQ5Fna3GkhRbndt2HQPZGc1LkGHsW7z01dQE8S2dqqny3OVONAllta5lCqTiW4fCguTKd+G/9AmfDpQ+7KTkJAAAAAElFTkSuQmCC"
+                          />
+                        </defs>
+                      </svg>
+                    </button>
+
+                    <input
+                      type="string"
+                      value={itemsNumber}
+                      onChange={(e) => {
+                        const value = parseInt(e.target.value, 10);
+                        if (!isNaN(value)) {
+                          setItemsNumber(value);
+                        }
+                      }}
+                      className="w-5 text-center bg-transparent text-black select-none outline-none"
+                    />
+
+                    <button
+                      onClick={() => {
+                        setItemsNumber((prev) => prev + 1);
+                      }}
+                      className="border-[#9A77FF] border rounded-full"
+                      style={{
+                        boxShadow: "0px 0px 0px 2px rgba(197, 153, 255, 0.30)"
+                      }}
+                    >
+                      <svg
+                        width={30}
+                        height={30}
+                        viewBox="0 0 30 30"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                      >
+                        <rect
+                          width={30}
+                          height={30}
+                          fill="url(#pattern0_113_739)"
+                        />
+                        <defs>
+                          <pattern
+                            id="pattern0_113_739"
+                            patternContentUnits="objectBoundingBox"
+                            width={1}
+                            height={1}
+                          >
+                            <use
+                              xlinkHref="#image0_113_739"
+                              transform="scale(0.0333333)"
+                            />
+                          </pattern>
+                          <image
+                            id="image0_113_739"
+                            width={30}
+                            height={30}
+                            xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABHklEQVR4nO2WTUrDUBSFv010UJuI69C6AKEGt6HGuhZnlpYOOuzcn50k4ipMnJlQCdxCCC/JfYlPMsiBOwmBj3veefc+GDVAnQIPwDsQA99SsXwLAf8vgTNgBWTAoaVyYA+c9YXeAKkCWK0ECLpCH6UDW2i5+2WXTvMe0DJc3bmntPccmCttP9GAt8pujtL8u9ZcmcwBOBMna7W0OD8b8AG4bwK/OQS/NIE/HYLjJnBSk15bmdKe2IIvOoAvbcEfDq2OBhmu0CH4tgnsOxogP20DpNDGAfgZ5eI3pduUdlN6q/UFTFHqysLytrV4rYWW53bfh0DxRuukQGm7yd4FPTUBniSZmi53NmeqkSer7VWmUCoVyXC401yZUfy3fgGUCo4V1aA/HAAAAABJRU5ErkJggg=="
+                          />
+                        </defs>
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
 
               {product.color && (
                 <div className="space-y-3">
                   <h1 className="text-[24px] font-semibold">COLOR</h1>
 
                   <div className="flex items-center space-x-4">
-                    {product.color.map((color, index) => {
+                    {product.color.map((col, index) => {
                       return (
                         <div
                           key={index}
+                          onClick={() => setColor(col)}
                           style={{
-                            background: `${color}`
+                            boxShadow:
+                              col === color
+                                ? "0px 0px 0px 2px rgba(197, 153, 255, 0.30)"
+                                : "none"
                           }}
-                          className={cn("w-5 h-5 rounded-full")}
-                        ></div>
+                          className={cn(
+                            " rounded-full p-[2px] border border-transparent cursor-pointer",
+                            col === color && "border-[#9A77FF]"
+                          )}
+                        >
+                          <div
+                            className="w-5 h-5 rounded-full"
+                            style={{
+                              background: `${col}`
+                            }}
+                          ></div>
+                        </div>
                       );
                     })}
                   </div>
