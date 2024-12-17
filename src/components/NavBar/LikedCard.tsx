@@ -38,14 +38,12 @@ const LikedCard = ({
   };
 
   const addProductCartHandle = () => {
-    // openingCartHandle({ brandId, productId: id });
     const getProduct = getProductDetails({ brandId, productId: id });
 
     if (getProduct) {
       setDataFilled(getProduct);
 
       setOpen(true);
-      // openingCartHandle({ brandId, productId: product.id });
       router.refresh();
     } else return;
   };

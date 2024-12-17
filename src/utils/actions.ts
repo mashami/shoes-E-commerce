@@ -1,4 +1,5 @@
-import { AllLikedProps, findProductProps, ProductTypes, ShoesType } from "./types";
+import { toast } from "@/hooks/use-toast";
+import { AllLikedProps, CartProductProps, findProductProps, ProductTypes, ShoesType } from "./types";
 
 export const staticShoesData: ShoesType[] = [
   {
@@ -197,7 +198,7 @@ export const staticShoesData: ShoesType[] = [
       },
       {
         id: "puma-3",
-        name: "Puma Product 3",
+        name: "mashami",
         price: 110,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -283,8 +284,6 @@ export const handleFilterShoes = ({productId, brandId}:findProductProps) => {
 
 
 export const handleUpdateLiked = ({ productId, brandId }: findProductProps) => {
-  // console.log("brandId ===>", brandId);
-  //   console.log("ProductID ====>", productId);
  
   const singleProduct = handleFilterShoes({ productId, brandId });
 
@@ -342,27 +341,29 @@ export const searchProduct = (keyword: string): ShoesType[] => {
 
 
 
-export const cartProducts: AllLikedProps[] = [];
+export const cartProducts: CartProductProps[] = [];
 
 
-export const addProductCart = (product: AllLikedProps) => {
-  // Check if the product is already in the cart
+export const addProductCart = (product: CartProductProps) => {
+  
   const isAlreadyInCart = cartProducts.some(
     (item) => item.product.id === product.product.id && item.brandId === product.brandId
   );
 
   if (isAlreadyInCart) {
-    console.warn("Product is already in the cart.");
+    toast({
+      title: "Product is already in the cart.",
+      className: "w-fit"
+    });
+   
     return;
   }
 
-  // Add the product to the cart
   cartProducts.push(product);
-  // console.log("Product added to the cart:", product);
 };
 
 
-export const getCartProducts = (): AllLikedProps[] => {
+export const getCartProducts = (): CartProductProps[] => {
   return cartProducts;
 };
 

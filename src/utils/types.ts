@@ -29,3 +29,15 @@ export interface AllLikedProps {
   brandId: string;
   brandName: string;
 }
+
+
+export interface CartProductProps {
+  product: ProductTypes;
+  itemsNumber:number
+  size:number,
+  color?:string
+  brandId: string;
+  brandName: string;
+  totalPrice:number
+  onOrder:boolean
+}
