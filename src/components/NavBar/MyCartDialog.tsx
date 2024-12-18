@@ -61,7 +61,7 @@ const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
 
   return (
     <Dialog defaultOpen={true} open={open} onOpenChange={setOpen}>
-      <DialogContent className="grid md:grid-cols-2 grid-cols-1 p-0 overflow-hidden md:min-w-[1000px] min-w-full min-h-[600px]">
+      <DialogContent className="grid md:grid-cols-2 grid-cols-1 p-0 overflow-hidden md:min-w-[1000px] min-w-full md:min-h-[600px] min-h-full">
         <div className="bg-[#E3ECFF] px-5 py-6 space-y-6">
           <DialogTitle>
             <button
@@ -113,7 +113,7 @@ const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
                   policy .
                 </p>
               </div>
-              <ScrollArea className="h-[600px] w-full py-4 hide-scrollbar">
+              <ScrollArea className="md:h-[600px] h-full w-full py-4 hide-scrollbar">
                 <div className="space-y-4">
                   {cartProducts.map((product, index) => (
                     <CartCard

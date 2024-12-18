@@ -64,10 +64,12 @@ const CartDialog = ({
       totalPrice: price,
       onOrder: true
     });
+
     toast({
       title: "Product add in cart successfull",
       className: "w-fit"
     });
+    setOpenCartDialog(false);
     router.refresh();
   };
 
@@ -84,7 +86,7 @@ const CartDialog = ({
       title: "Removed product in cart successfull",
       className: "w-fit"
     });
-
+    setOpenCartDialog(false);
     router.refresh();
   };
 
