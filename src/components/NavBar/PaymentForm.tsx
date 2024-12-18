@@ -1,6 +1,12 @@
 "use client";
 
 import React from "react";
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot
+} from "@/components/ui/input-otp";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 
 interface PaymentFormProps {
   totalAmount: number;
@@ -27,11 +33,43 @@ const PaymentForm = ({ totalAmount }: PaymentFormProps) => {
         <label className="block text-gray-600 text-sm mb-1">
           Credit Card Number
         </label>
-        <input
-          type="text"
-          placeholder="xxxx  xxxx  xxxx  xxxx"
-          className="w-full border border-black focus:border-blue-500 focus:outline-none px-3 py-2 rounded-md"
-        />
+        <InputOTP
+          maxLength={16}
+          pattern={REGEXP_ONLY_DIGITS}
+          className="max-w-full  "
+        >
+          <InputOTPGroup className="flex flex-col space-y-2">
+            <InputOTPGroup className="">
+              <InputOTPSlot className="" index={0} />
+              <InputOTPSlot className="" index={1} />
+              <InputOTPSlot className="" index={2} />
+              <InputOTPSlot className="" index={3} />
+            </InputOTPGroup>
+
+            <InputOTPGroup>
+              <InputOTPSlot className="" index={8} />
+              <InputOTPSlot className="" index={9} />
+              <InputOTPSlot className="" index={10} />
+              <InputOTPSlot className="" index={11} />
+            </InputOTPGroup>
+          </InputOTPGroup>
+
+          <InputOTPGroup className="flex flex-col space-y-2">
+            <InputOTPGroup className="">
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+              <InputOTPSlot index={6} />
+              <InputOTPSlot index={7} />
+            </InputOTPGroup>
+
+            <InputOTPGroup className="">
+              <InputOTPSlot className="" index={12} />
+              <InputOTPSlot className="" index={13} />
+              <InputOTPSlot className="" index={14} />
+              <InputOTPSlot className="" index={15} />
+            </InputOTPGroup>
+          </InputOTPGroup>
+        </InputOTP>
       </div>
 
       {/* <!-- Expiry Date and CVV --> */}
@@ -48,11 +86,14 @@ const PaymentForm = ({ totalAmount }: PaymentFormProps) => {
         </div>
         <div className="flex-1">
           <label className="block text-gray-600 text-sm mb-1">CVV</label>
-          <input
-            type="text"
-            placeholder="xxx"
-            className="w-full border border-black focus:border-blue-500 focus:outline-none px-3 py-2 rounded-md"
-          />
+          <InputOTP maxLength={4}>
+            <InputOTPGroup className="border border-black rounded-md">
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+              <InputOTPSlot index={3} />
+            </InputOTPGroup>
+          </InputOTP>
         </div>
       </div>
 
@@ -80,7 +121,7 @@ const PaymentForm = ({ totalAmount }: PaymentFormProps) => {
         </div>
         <div className="flex justify-between font-semibold">
           <span>Total Amount</span>
-          <span>${totalAmount + 4}</span>
+          <span>${totalAmount === 0 ? 0 : totalAmount + 4}</span>
         </div>
       </div>
 
