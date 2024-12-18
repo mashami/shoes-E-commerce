@@ -1,16 +1,9 @@
 "use client";
-import {
-  Dialog,
-  DialogContent,
-  //   DialogDescription,
-  //   DialogHeader,
-  DialogTitle
-  //   DialogTrigger,
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { getCartProducts, removeProductCart } from "@/utils/actions";
 import { CartProductProps, findProductProps } from "@/utils/types";
-
+import { useToast } from "@/hooks/use-toast";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { CartCard } from "../MainCard";
 import PaymentForm from "./PaymentForm";
@@ -24,34 +17,32 @@ interface TestDialogProps {
 const getAllproductsCart: CartProductProps[] = getCartProducts();
 
 const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
-  const [AllCartProducts, setAllCartProducts] =
-    useState<CartProductProps[]>(getAllproductsCart);
+  const { toast } = useToast();
 
-  console.log("getAllproductsCart ====>", getAllproductsCart);
+  const [cartProducts, setCartProducts] = useState<CartProductProps[]>(
+    getCartProducts()
+  );
 
-  const totalAmount: number = AllCartProducts.reduce(
+  const router = useRouter();
+
+  const totalAmount: number = cartProducts.reduce(
     (acc, product) => (product.onOrder ? acc + product.totalPrice : acc),
     0
   );
-  const router = useRouter();
 
   const switchHandle = ({ brandId, productId }: findProductProps) => {
-    const updatedCartProducts: CartProductProps[] = AllCartProducts.map(
-      (product) => {
-        if (product.brandId === brandId && product.product.id === productId) {
-          return {
-            ...product,
-            onOrder: !product.onOrder
-          };
-        }
-        return product;
+    const updatedCartProducts = cartProducts.map((product) => {
+      if (product.brandId === brandId && product.product.id === productId) {
+        return {
+          ...product,
+          onOrder: !product.onOrder
+        };
       }
-    );
+      return product;
+    });
+    setCartProducts(updatedCartProducts);
 
     console.log("updatedCartProducts ====>", updatedCartProducts);
-
-    setAllCartProducts(updatedCartProducts);
-    router.refresh();
   };
 
   const removeHandle = ({ brandId, productId }: findProductProps) => {
@@ -59,10 +50,13 @@ const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
       brandId: brandId,
       productId: productId
     });
-
-    //
-
+    toast({
+      title: "Product has been deleted successfull",
+      className: "w-fit"
+    });
+    setCartProducts(getAllproductsCart);
     router.refresh();
+    // }
   };
 
   return (
@@ -108,7 +102,7 @@ const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
             </button>
           </DialogTitle>
 
-          {AllCartProducts.length > 0 ? (
+          {cartProducts.length > 0 ? (
             <div className="pl-8 space-y-2">
               <div className="">
                 <h1 className="text-[20px] font-bold text-black">
@@ -121,7 +115,7 @@ const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
               </div>
               <ScrollArea className="h-[600px] w-full py-4 hide-scrollbar">
                 <div className="space-y-4">
-                  {AllCartProducts.map((product, index) => (
+                  {cartProducts.map((product, index) => (
                     <CartCard
                       key={index}
                       cartProduct={product}
@@ -137,9 +131,7 @@ const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
           )}
         </div>
 
-        {AllCartProducts.length > 0 && (
-          <PaymentForm totalAmount={totalAmount} />
-        )}
+        {cartProducts.length > 0 && <PaymentForm totalAmount={totalAmount} />}
       </DialogContent>
     </Dialog>
   );

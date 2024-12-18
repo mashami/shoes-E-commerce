@@ -399,11 +399,8 @@ export const removeProductCart = ({productId,brandId}:findProductProps) => {
     return;
   }
 
-  return  cartProducts.splice(productIndex, 1),
-    toast({
-      title: "Product has been deleted successfull",
-      className: "w-fit"
-    });
+  return  cartProducts.splice(productIndex, 1) as CartProductProps[]
+    
   
 };
 
@@ -417,3 +414,15 @@ export const checkInCartHandle = (brandId: string, productId: string) => {
 
     return filterCarts.includes(true);
   };
+
+
+ export const getAllCartProducts = (): CartProductProps[] => {
+  const storedCart = localStorage.getItem("cartProducts");
+  return storedCart ? JSON.parse(storedCart) : cartProducts;
+};
+
+
+
+  export const updateCartProducts = (updatedCart: CartProductProps[]) => {
+  localStorage.setItem("cartProducts", JSON.stringify(updatedCart));
+};
