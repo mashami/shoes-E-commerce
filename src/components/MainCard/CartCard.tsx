@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { Switch } from "@/components/ui/switch";
 import { CartProductProps, findProductProps } from "@/utils/types";
+import { useRouter } from "next/navigation";
 
 interface LikedCartProps {
   cartProduct: CartProductProps;
@@ -14,11 +15,14 @@ const CartCard = ({
   deleteFunction,
   switchFunction
 }: LikedCartProps) => {
+  const router = useRouter();
+
   const removeHandle = () => {
     deleteFunction({
       brandId: cartProduct.brandId,
       productId: cartProduct.product.id
     });
+    router.refresh();
   };
 
   const switchHandle = () => {
@@ -26,6 +30,7 @@ const CartCard = ({
       brandId: cartProduct.brandId,
       productId: cartProduct.product.id
     });
+    router.refresh();
   };
 
   return (
