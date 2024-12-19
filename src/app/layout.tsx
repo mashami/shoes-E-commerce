@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "/src/styles/globals.scss";
-import NavBar from "@/components/NavBar/NavBar";
 import { cn } from "@/lib/utils";
 import { Bricolage_Grotesque } from "next/font/google";
 // import { Toaster } from "@/components/ui/sonner";
@@ -28,11 +27,7 @@ export default function RootLayout({
       <body className={cn(`${bricolage.variable} font-bricolage`)}>
         <AppContextProvider>
           <main>
-            <div className="fixed w-full top-0 right-0 xl:px-[50px] px-2 bg-white z-50">
-              <NavBar />
-            </div>
-
-            <div className="pt-20 md:container px-6 py-6">{children}</div>
+            <div>{children}</div>
           </main>
           <Toaster />
         </AppContextProvider>
