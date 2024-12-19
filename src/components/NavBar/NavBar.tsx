@@ -11,19 +11,13 @@ import {
   DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { useAppContext } from "@/utils/context/AppContext";
+import { useRouter } from "next/navigation";
 
 const NavBar = () => {
   const [openSheet, setOpenSheet] = useState<boolean>(false);
   const [isMycartDialogOpen, setIsMyCartDialogOpen] = useState<boolean>(false);
-
+  const router = useRouter();
   const { handleSearch, setSearchValue, searchValue } = useAppContext();
-
-  // const searchHandle = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   // if (searchValue.trim()) {
-  //   handleSearch(searchValue);
-  //   // }
-  // };
 
   return (
     <>
@@ -122,11 +116,13 @@ const NavBar = () => {
 
         <div className="lg:flex hidden items-center space-x-2 ">
           <Button
+            onClick={() => router.push("/signin")}
             text="Sign in"
             className="text-white bg-blue-500 hover:bg-blue-500/80 transition ease-in-out duration-300"
           />
 
           <Button
+            onClick={() => router.push("/signup")}
             variant={"ghost"}
             text="Sign up"
             className="text-black  transition duration-300 ease-in-out space-x-2 flex items-center"
