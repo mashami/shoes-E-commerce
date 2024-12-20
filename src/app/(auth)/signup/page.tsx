@@ -5,11 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import { FaRegEyeSlash } from "react-icons/fa";
+import { IoEyeOutline } from "react-icons/io5";
 
 const signup = () => {
   const [email, setEmail] = useState<string>("");
-  const [passWord, setPassword] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [retypePassword, setRetypePassword] = useState<string>("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRetypePassword, setShowRetypePassword] = useState(false);
 
   return (
     <div className="flex items-center justify-center h-full w-full">
@@ -44,24 +48,53 @@ const signup = () => {
             placeholder="Email"
             className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           />
-          <Input
-            type="password"
-            value={passWord}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Password"
-            className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          />
-          <Input
-            type="password"
-            value={retypePassword}
-            onChange={(e) => setRetypePassword(e.target.value)}
-            placeholder="Retype Password"
-            className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-          />
+          <div className="relative">
+            <input
+              type={showPassword ? "text" : "password"}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Password"
+              className="h-12 w-full px-4 pr-12 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md border border-gray-300"
+            />
+            {!showPassword ? (
+              <IoEyeOutline
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              />
+            ) : (
+              <FaRegEyeSlash
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              />
+            )}
+          </div>
+
+          <div className="relative">
+            <Input
+              type={showRetypePassword ? "text" : "password"}
+              value={retypePassword}
+              onChange={(e) => setRetypePassword(e.target.value)}
+              placeholder="Retype Password"
+              className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            />
+
+            {!showRetypePassword ? (
+              <IoEyeOutline
+                onClick={() => setShowRetypePassword(!showRetypePassword)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              />
+            ) : (
+              <FaRegEyeSlash
+                onClick={() => setShowRetypePassword(!showRetypePassword)}
+                className="absolute right-2 top-1/2 transform -translate-y-1/2"
+              />
+            )}
+          </div>
 
           <div className="pt-4 space-y-4">
             <Button
               text="Signup"
+              disabled={!email || !password || !retypePassword}
               className="text-white rounded-md w-full h-12"
               svg={
                 <svg
@@ -87,7 +120,7 @@ const signup = () => {
             />
 
             <Button
-              variant={"outline"}
+              variant={"ghost"}
               text="Signup"
               position={"left"}
               className="rounded-md w-full h-12"
