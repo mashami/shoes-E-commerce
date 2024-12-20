@@ -1,11 +1,16 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import React from "react";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 const signup = () => {
+  const [email, setEmail] = useState<string>("");
+  const [passWord, setPassword] = useState<string>("");
+  const [retypePassword, setRetypePassword] = useState<string>("");
+
   return (
     <div className=" flex items-center justify-center h-full w-full">
       <div className="w-[400px] bg-white p-7 rounded-3xl mx-auto my-auto drop-shadow-lg">
@@ -34,16 +39,22 @@ const signup = () => {
         <form action="" className="py-4 space-y-3">
           <Input
             type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
             className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           />
           <Input
             type="password"
+            value={passWord}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Password"
             className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           />
           <Input
             type="password"
+            value={retypePassword}
+            onChange={(e) => setRetypePassword(e.target.value)}
             placeholder="Retype Password"
             className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           />
