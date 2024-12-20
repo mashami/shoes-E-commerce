@@ -12,8 +12,8 @@ const signup = () => {
   const [retypePassword, setRetypePassword] = useState<string>("");
 
   return (
-    <div className=" flex items-center justify-center h-full w-full">
-      <div className="w-[400px] bg-white p-7 rounded-3xl mx-auto my-auto drop-shadow-lg">
+    <div className="flex items-center justify-center h-full w-full">
+      <div className="md:w-[400px] w-full bg-white p-7 rounded-3xl mx-auto my-auto drop-shadow-lg">
         <div className="flex flex-col items-center justify-center space-y-4">
           <div className="p-2 rounded-full flex items-center justify-center bg-black/10 ">
             <svg

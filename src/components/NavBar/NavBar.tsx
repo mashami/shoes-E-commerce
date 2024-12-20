@@ -184,7 +184,10 @@ const NavBar = () => {
           </DropdownMenuTrigger>
           <DropdownMenuContent className="absolute top-4 -right-4 w-[170px]">
             <DropdownMenuItem>
-              <div className="flex items-center justify-between space-x-3 p-2  rounded-xl w-full border border-black/20 cursor-pointer select-none bg-blue-600">
+              <div
+                onClick={() => router.push("/signin")}
+                className="flex items-center justify-between space-x-3 p-2  rounded-xl w-full border border-black/20 cursor-pointer select-none bg-blue-600"
+              >
                 <p className="font-bold font-bricolage text-white">Sign in</p>
 
                 <svg
@@ -220,7 +223,10 @@ const NavBar = () => {
             </DropdownMenuItem>
 
             <DropdownMenuItem>
-              <div className="flex items-center justify-between space-x-3 p-2  rounded-xl w-full border border-black/20 cursor-pointer select-none">
+              <div
+                onClick={() => router.push("/signup")}
+                className="flex items-center justify-between space-x-3 p-2  rounded-xl w-full border border-black/20 cursor-pointer select-none"
+              >
                 <p className="font-bold font-bricolage">Sign up</p>
 
                 <svg
