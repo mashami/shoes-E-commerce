@@ -54,7 +54,7 @@ const signup = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              className="h-12 w-full px-4 pr-12 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md border border-gray-300"
+              className="h-12 w-full px-4 pr-8 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md border border-gray-300"
             />
             {!showPassword ? (
               <IoEyeOutline
@@ -75,7 +75,7 @@ const signup = () => {
               value={retypePassword}
               onChange={(e) => setRetypePassword(e.target.value)}
               placeholder="Retype Password"
-              className="h-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              className="h-12 pr-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             />
 
             {!showRetypePassword ? (
@@ -120,7 +120,7 @@ const signup = () => {
             />
 
             <Button
-              variant={"ghost"}
+              variant={"outline"}
               text="Signup"
               position={"left"}
               className="rounded-md w-full h-12"
