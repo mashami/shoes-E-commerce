@@ -51,7 +51,7 @@ const signin = () => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Password"
-              className="h-12 w-full px-4 pr-12 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md border border-gray-300"
+              className="h-12 w-full px-4 pr-8 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 rounded-md border border-gray-300"
             />
             {!showPassword ? (
               <IoEyeOutline
