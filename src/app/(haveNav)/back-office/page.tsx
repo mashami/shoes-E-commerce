@@ -2,16 +2,12 @@
 "use client";
 
 import AddProductDialog from "@/components/AddProductDialog/AddProductDialog";
-import { Menu } from "@/components/Menu";
 import { Statistic } from "@/components/Statistic";
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 
 const Backoffice = () => {
   const [isAddProductOpen, setIsAddProductOpen] = useState<boolean>(false);
-  const [activeMenu, setActiveMenu] = useState<
-    "all" | "unfulfilled" | "unpaid" | "paid" | "favolate"
-  >("all");
 
   return (
     <>

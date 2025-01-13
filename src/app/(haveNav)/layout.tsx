@@ -1,7 +1,5 @@
 import { NavBar } from "@/components/NavBar";
 import "/src/styles/globals.scss";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-
 export default function RootLayout({
   children
 }: Readonly<{

@@ -1,9 +1,6 @@
 "use client";
 
 import {
-  Calendar,
-  Home,
-  Inbox,
   HeartIcon,
   Settings,
   SquareDashedBottomCodeIcon,
