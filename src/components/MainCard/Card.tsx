@@ -83,7 +83,7 @@ const Card = ({
           {!checkInCartHandle(brandId, id) && (
             <div
               onClick={addProductCartHandle}
-              className="absolute bottom-1 bg-blue-500 hover:bg-blue-400 -translate-x-1/2 left-1/2 group-hover:translate-y-0 translate-y-12 transition duration-300 ease-in-out flex items-center space-x-1 py-1.5 px-4 rounded-full cursor-pointer select-none"
+              className="absolute bottom-1 bg-[#8155FF] hover:bg-[#8155FF]/90 -translate-x-1/2 left-1/2 group-hover:translate-y-0 translate-y-12 transition duration-300 ease-in-out flex items-center space-x-1 py-1.5 px-4 rounded-full cursor-pointer select-none"
             >
               <svg
                 width={22}
