@@ -51,7 +51,7 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const [activeMenu, setActiveMenu] = useState<string>("");
+  const [activeMenu, setActiveMenu] = useState<string>("dashboard");
   return (
     <Sidebar className="">
       <SidebarContent className="max-h-full pt-32">
