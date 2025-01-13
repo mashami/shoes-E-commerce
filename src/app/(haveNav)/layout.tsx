@@ -1,5 +1,6 @@
 import { NavBar } from "@/components/NavBar";
 import "/src/styles/globals.scss";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function RootLayout({
   children
@@ -11,6 +12,7 @@ export default function RootLayout({
       <div className="fixed w-full top-0 right-0 xl:px-[50px] px-2 bg-white z-50">
         <NavBar />
       </div>
+
       <div>{children}</div>
     </div>
   );

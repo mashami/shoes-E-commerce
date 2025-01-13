@@ -2,18 +2,26 @@
 "use client";
 
 import AddProductDialog from "@/components/AddProductDialog/AddProductDialog";
+import { Menu } from "@/components/Menu";
+import { Statistic } from "@/components/Statistic";
 import { Button } from "@/components/ui/button";
 import React, { useState } from "react";
 
-const page = () => {
+const Backoffice = () => {
   const [isAddProductOpen, setIsAddProductOpen] = useState<boolean>(false);
+  const [activeMenu, setActiveMenu] = useState<
+    "all" | "unfulfilled" | "unpaid" | "paid" | "favolate"
+  >("all");
+
   return (
     <>
-      <div>
+      <div className="flex items-center justify-between">
+        <p className="text-3xl font-medium">Order</p>
+
         <Button
           onClick={() => setIsAddProductOpen(true)}
           text="Add Product"
-          className="text-white py-5 px-2"
+          className="text-white py-5 px-2 rounded-lg bg-[#8155FF]"
           position="left"
           svg={
             <svg
@@ -49,6 +57,24 @@ const page = () => {
         />
       </div>
 
+      <div className="mt-5 flex flex-wrap items-center space-x-8">
+        <Statistic title="Total Products" value="3210" />
+
+        <Statistic title="Total purchase" value="3210" />
+
+        <Statistic title="Total Orders" value="3210" />
+
+        <Statistic title="Total Orders" value="3210" />
+
+        <Statistic title="Total Orders" value="3210" />
+
+        <Statistic title="Total Orders" value="3210" />
+      </div>
+
+      {/* <div className="border-b border-black w-full mt-5">
+        <Menu activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+      </div> */}
+
       <AddProductDialog
         isAddProductOpen={isAddProductOpen}
         setIsAddProductOpen={setIsAddProductOpen}
@@ -57,4 +83,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Backoffice;

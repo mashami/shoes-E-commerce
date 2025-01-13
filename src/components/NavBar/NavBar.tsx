@@ -148,7 +148,7 @@ const NavBar = () => {
           <Button
             onClick={() => router.push("/signin")}
             text="Sign in"
-            className="text-white bg-blue-500 hover:bg-blue-500/80 transition ease-in-out duration-300"
+            className="text-white bg-[#8155FF] hover:bg-[#8155FF]/80 transition ease-in-out duration-300"
           />
 
           <Button
@@ -216,7 +216,7 @@ const NavBar = () => {
             <DropdownMenuItem>
               <div
                 onClick={() => router.push("/signin")}
-                className="flex items-center justify-between space-x-3 p-2  rounded-xl w-full border border-black/20 cursor-pointer select-none bg-blue-600"
+                className="flex items-center justify-between space-x-3 p-2  rounded-xl w-full border border-black/20 cursor-pointer select-none bg-[#8155FF]"
               >
                 <p className="font-bold font-bricolage text-white">Sign in</p>
 
