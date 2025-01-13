@@ -96,8 +96,38 @@ const NavBar = () => {
             content="My favorates"
             onClick={() => setOpenSheet(true)}
           >
-            <div className="p-3 rounded-full border border-black/20 cursor-pointer lg:block hidden">
+            <div className="p-2 rounded-full border border-black/20 cursor-pointer lg:block hidden">
               <svg
+                width={25}
+                height={25}
+                viewBox="0 0 16 15"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlnsXlink="http://www.w3.org/1999/xlink"
+              >
+                <rect width={16} height={15} fill="url(#pattern0_120_734)" />
+                <defs>
+                  <pattern
+                    id="pattern0_120_734"
+                    patternContentUnits="objectBoundingBox"
+                    width={1}
+                    height={1}
+                  >
+                    <use
+                      xlinkHref="#image0_120_734"
+                      transform="matrix(0.03125 0 0 0.0333333 0.03125 0)"
+                    />
+                  </pattern>
+                  <image
+                    id="image0_120_734"
+                    width={30}
+                    height={30}
+                    xlinkHref="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAABSUlEQVR4nO2Vu0oDQRSGv0JEm9hE0VLBSrCx0crCxiDYSVTIG1hZChEs9SUEK9/AWCtqZeOlN7EUBcEr3jhwimU5s5nZrIMQfzgwLP9/Pmbn7A50q86Ab60bYCUW+DQBlvoAxomsPYXXY4MXFSxvIar6gWfgExiKDT/QXddig9dSw1ZUHbcDj/4SuOWz6ytH+A6oAgPABHAINHQtz5bVY2V3fcA7jvBSyterlVTVkV31Ac86wiWPbMnIffl+JT3Ag9FAzr+dxozcOQHaNxpseuS2jNx2CLhmNHgFJjMyMmQvRm4uBFzWCyPdRCZ+0PDLGV4b/iegj0CdOIbsAhhO+GR96fA2yKGNjB9CE5jRamb41vOAR4DHDv5W93pkuTSt1+R7APANOAKm8kK7VwvArd4wlQJ83mqlprlT398HV7SpNJsvwPcvougHZdfgoPxJIjEAAAAASUVORK5CYII="
+                  />
+                </defs>
+              </svg>
+
+              {/* <svg
                 width={16}
                 height={15}
                 viewBox="0 0 20 19"
@@ -109,7 +139,7 @@ const NavBar = () => {
                   fill="#E8EAED"
                   stroke="black"
                 />
-              </svg>
+              </svg> */}
             </div>
           </TooltipComp>
         </div>
