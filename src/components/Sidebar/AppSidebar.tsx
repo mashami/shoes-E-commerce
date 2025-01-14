@@ -18,8 +18,8 @@ import {
   SidebarMenuButton,
   SidebarMenuItem
 } from "@/components/ui/sidebar";
-import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { useAppContext } from "@/utils/context/AppContext";
 
 // Menu items.
 const items = [
@@ -51,7 +51,7 @@ const items = [
 ];
 
 export function AppSidebar() {
-  const [activeMenu, setActiveMenu] = useState<string>("dashboard");
+  const { activeMenu, setActiveMenu } = useAppContext();
   return (
     <Sidebar className="">
       <SidebarContent className="max-h-full pt-32">

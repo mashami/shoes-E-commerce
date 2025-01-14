@@ -13,27 +13,32 @@ import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { fileToDataURI } from "@/utils/helpers";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useMemo, useState, useTransition } from "react";
+import { SetStateAction, useMemo, useState, useTransition } from "react";
 import { v4 } from "uuid";
-import { FormField } from "../FormField";
-import { Button } from "../ui/button";
-import { Loader } from "../Loader";
+
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue
-} from "../ui/select";
-import { Input } from "../ui/input";
+} from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 import { staticShoesData } from "@/utils/actions";
-import { ColorPicker } from "../ColorPicker";
-import style from "../FormField/FormField.module.scss";
 
-interface AddProductDialogProps {
-  setIsAddProductOpen: (arg0: boolean) => void;
-  isAddProductOpen: boolean;
+import style from "@/components/FormField/FormField.module.scss";
+import { FormField } from "@/components/FormField";
+import { ColorPicker } from "@/components/ColorPicker";
+import { Button } from "@/components/ui/button";
+import { Loader } from "@/components/Loader";
+import { ProductTypes } from "@/utils/types";
+
+interface EditProductDialogProps {
+  setIsEditProductOpen: React.Dispatch<SetStateAction<boolean>>;
+  isEditProductOpen: boolean;
+  product: ProductTypes;
+  // brandId: string;
+  brandName: string;
 }
 
 interface ImageObject {
@@ -60,26 +65,31 @@ const getInitialImages = () => [
   }
 ];
 
-const AddProductDialog = ({
-  setIsAddProductOpen,
-  isAddProductOpen
-}: AddProductDialogProps) => {
-  const [productName, setProductName] = useState<string>("");
-  const [productDescription, setProductDescription] = useState<string>("");
-  const [productPrice, setProductPrice] = useState<string>("");
+const EditProductDialog = ({
+  setIsEditProductOpen,
+  isEditProductOpen,
+  product,
+  brandName: name
+}: EditProductDialogProps) => {
+  const [productName, setProductName] = useState<string>(product.name);
+  const [productDescription, setProductDescription] = useState<string>(
+    product.description || ""
+  );
+  const [productPrice, setProductPrice] = useState<number>(product.price);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [brandName, setBrandName] = useState<string>("");
+  const [brandName, setBrandName] = useState<string>(name);
   const [newBrand, setNewBrand] = useState<string>("");
   const [totalProducts, setTotalProducts] = useState<number>(0);
   const [images, setImages] = useState<ImageObject[]>(getInitialImages());
   const [isPending, startTransition] = useTransition();
   const isMutating = isPending || isLoading;
-  const router = useRouter();
 
   const brandNames = staticShoesData.map((value) => value.brandName);
-  const [colorSelected, setColorSeleted] = useState<string[]>();
-  const [sizes, setSizes] = useState<string[]>();
-  const [size, setSize] = useState<string>("");
+  const [colorSelected, setColorSeleted] = useState<string[] | undefined>(
+    product.color
+  );
+  const [sizes, setSizes] = useState<number[]>(product.size);
+  const [size, setSize] = useState<number>(0);
 
   console.log(brandNames);
 
@@ -147,7 +157,7 @@ const AddProductDialog = ({
       return;
     }
     setSizes((prev) => (prev ? [...prev, size] : [size]));
-    setSize("");
+    setSize(0);
   };
 
   const imagesWithUrl = useMemo(() => {
@@ -166,7 +176,7 @@ const AddProductDialog = ({
 
   return (
     <>
-      <Dialog open={isAddProductOpen} onOpenChange={setIsAddProductOpen}>
+      <Dialog open={isEditProductOpen} onOpenChange={setIsEditProductOpen}>
         <DialogContent className="product-dialog md:p-8 p-6 space-y-1 max-w-[351px] rounded-lg md:max-w-[645px] h-[95%] 2xl:h-[55%] overflow-y-auto">
           <DialogTitle className="text-[#8155FF] text-2xl font-bold text-center">
             product add
@@ -190,7 +200,7 @@ const AddProductDialog = ({
             value={productPrice}
             onChange={(e) => {
               const value = e.target.value.replace(/[^0-9]/g, "");
-              setProductPrice(Number(value).toLocaleString());
+              setProductPrice(Number(value));
             }}
           />
           <FormField
@@ -245,7 +255,7 @@ const AddProductDialog = ({
                   value={size}
                   onChange={(e) => {
                     const value = e.target.value.replace(/[^0-9]/g, "");
-                    setSize(Number(value).toString());
+                    setSize(Number(value));
                   }}
                 />
               </form>
@@ -379,7 +389,7 @@ const AddProductDialog = ({
               <Button
                 className="h-10"
                 variant={"outline"}
-                onClick={() => setIsAddProductOpen(false)}
+                onClick={() => setIsEditProductOpen(false)}
                 text="Cancel"
                 disabled={isMutating}
               />
@@ -419,4 +429,4 @@ const AddProductDialog = ({
   );
 };
 
-export default AddProductDialog;
+export default EditProductDialog;
