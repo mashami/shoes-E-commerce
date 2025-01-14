@@ -20,6 +20,8 @@ interface AppContextData {
   handleSearch: (value: string) => void;
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
+  setActiveMenu: Dispatch<SetStateAction<string>>;
+  activeMenu: string;
 }
 
 const AppContext = createContext<AppContextData | null>(null);
@@ -44,6 +46,7 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
   const [filteredShoes, setFilteredShoes] =
     useState<ShoesType[]>(staticShoesData);
   const [searchValue, setSearchValue] = useState<string>("");
+  const [activeMenu, setActiveMenu] = useState<string>("dashboard");
 
   const openingCartHandle = ({ productId, brandId }: findProductProps) => {
     const getProduct: ProductTypes | undefined = handleFilterShoes({
@@ -72,7 +75,9 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     setOpenCartDialog,
     openingCartHandle,
     dataFilled,
-    setDataFilled
+    setDataFilled,
+    activeMenu,
+    setActiveMenu
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

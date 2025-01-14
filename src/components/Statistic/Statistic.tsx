@@ -25,7 +25,7 @@ const Statistic = ({
       <div className="flex items-center space-x-2">
         <p className="text-[23px] text-black font-medium ">{title}</p>
         <span className="h-4 w-px bg-blue-300"></span>
-        <p className="font-thin text-[20px]">{when}</p>
+        <p className="font-thin">{when}</p>
       </div>
       <div className="flex items-center space-x-5">
         <div
