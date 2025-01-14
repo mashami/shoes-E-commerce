@@ -1,5 +1,5 @@
 "use client";
-
+//@typescript-eslint/no-unused-expressions
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
 import Image from "next/image";
@@ -19,7 +19,6 @@ interface ViewItemDialogProps {
   openViewDialog: boolean;
   setOpenViewDialog: Dispatch<SetStateAction<boolean>>;
   product: ProductTypes;
-  // brandId: string;
   brandName: string;
   setOpenEditDialog: Dispatch<SetStateAction<boolean>>;
 }
@@ -36,7 +35,7 @@ const ViewItemDialog = ({
   const [api, setApi] = React.useState<CarouselApi>();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [count, setCount] = useState(0);
-
+  //ygugyguguy
   useEffect(() => {
     if (!api) {
       return;
@@ -49,6 +48,11 @@ const ViewItemDialog = ({
       setCurrentIndex(api.selectedScrollSnap());
     });
   }, [api]);
+
+  const handleEditOpen = () => {
+    setOpenEditDialog(true);
+    setOpenViewDialog(false);
+  };
 
   return (
     <Dialog onOpenChange={setOpenViewDialog} open={openViewDialog}>
@@ -83,7 +87,6 @@ const ViewItemDialog = ({
               </CarouselContent>
 
               <CarouselPrevious
-                // onClick={handlePrevClick}
                 className="rounded-lg px-4"
                 svg={
                   <svg
@@ -122,7 +125,6 @@ const ViewItemDialog = ({
                 }
               />
               <CarouselNext
-                // onClick={handleNextClick}
                 className="rounded-lg px-4"
                 svg={
                   <svg
@@ -166,7 +168,7 @@ const ViewItemDialog = ({
               {product.pictures.map((pic, i) => (
                 <div
                   key={i}
-                  // onClick={() => setCurrentIndex(i)}
+                  onClick={() => api?.scrollTo(i)}
                   className={cn(
                     "h-[85px] w-full rounded-lg relative overflow-hidden border-[0.5px] border-transparent select-none",
                     i === currentIndex && "border-[#9A77FF]"
@@ -252,9 +254,7 @@ const ViewItemDialog = ({
             <div className="flex items-center space-x-3">
               <Button
                 text="Edit"
-                onClick={() => {
-                  setOpenEditDialog(true), setOpenViewDialog(false);
-                }}
+                onClick={handleEditOpen}
                 className="bg-[#8155FF] outline-none border-none hover:bg-[#8155FF]/80 transition ease-in-out duration-300 h-12 rounded-xl text-white flex"
                 position="right"
                 svg={

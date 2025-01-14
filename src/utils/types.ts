@@ -15,6 +15,7 @@ export interface ShoesType {
     id:string
     brandName:string
     product:ProductTypes[]
+    totalProducts?:number
 }
 
 export interface findProductProps{

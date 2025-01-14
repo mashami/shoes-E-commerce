@@ -101,16 +101,6 @@ const MainComp = ({ brandName, product, brandId }: MainCardProps) => {
         </Pagination>
       </div>
 
-      {/* {dataFilled && (
-        <CartDialog
-          brandName={brandName}
-          brandId={brandId}
-          product={dataFilled}
-          setOpenCartDialog={setOpen}
-          openCartDialog={open}
-        />
-      )} */}
-
       {dataFilled && (
         <ViewItemDialog
           setOpenEditDialog={setOpenEditProductDialog}
@@ -122,10 +112,14 @@ const MainComp = ({ brandName, product, brandId }: MainCardProps) => {
         />
       )}
 
-      <EditProductDialog
-        isEditProductOpen={openEditProducrDialog}
-        setIsEditProductOpen={setOpenEditProductDialog}
-      />
+      {dataFilled && (
+        <EditProductDialog
+          brandName={brandName}
+          product={dataFilled}
+          isEditProductOpen={openEditProducrDialog}
+          setIsEditProductOpen={setOpenEditProductDialog}
+        />
+      )}
     </>
   );
 };

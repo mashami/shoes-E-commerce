@@ -1,13 +1,11 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 "use client";
 
-import { checkInCartHandle, handleUpdateLiked } from "@/utils/actions";
 import { useAppContext } from "@/utils/context/AppContext";
 import { ProductTypes } from "@/utils/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { Dispatch, SetStateAction, useState } from "react";
-import EditProductDialog from "./EditProductDialog";
 
 interface CardProps {
   product: ProductTypes;
@@ -26,27 +24,19 @@ const Card = ({
   brandId
 }: CardProps) => {
   const {
-    id,
     pictures: [imageUrl] = [][0],
     price,
     name: shoesName,
-    liked = false,
+
     description
   } = product;
 
   const router = useRouter();
-  const { setDataFilled, dataFilled } = useAppContext();
+  const { setDataFilled } = useAppContext();
 
   const handleFindProduct = () => {
     setDataFilled(product);
     setOpenViewDialog(true);
-    router.refresh();
-  };
-
-  const handleUpdateLikedChange = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.stopPropagation();
-
-    handleUpdateLiked({ productId: id, brandId });
     router.refresh();
   };
 
@@ -134,11 +124,6 @@ const Card = ({
           </div>
         </div>
       </div>
-
-      <EditProductDialog
-        setIsEditProductOpen={setOpenEditDialog}
-        isEditProductOpen={openEditDialog}
-      />
     </>
   );
 };
