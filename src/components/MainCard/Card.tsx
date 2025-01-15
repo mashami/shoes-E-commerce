@@ -34,6 +34,8 @@ const Card = ({
     liked = false
   } = product;
 
+  console.log(imageUrl);
+
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const { setDataFilled, dataFilled } = useAppContext();
@@ -71,7 +73,7 @@ const Card = ({
       >
         <div className="w-full h-[231px] relative overflow-hidden">
           <Image
-            src={imageUrl}
+            src={imageUrl.url}
             style={{
               objectFit: "cover"
             }}

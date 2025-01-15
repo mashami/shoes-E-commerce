@@ -37,7 +37,7 @@ const CartCard = ({
     <div className="grid grid-cols-3 gap-3 p-3 bg-white rounded-2xl relative overflow-hidden group">
       <div className="relative w-full min-h-[100px] rounded-xl overflow-hidden">
         <Image
-          src={cartProduct.product.pictures[0]}
+          src={cartProduct.product.pictures[0].url}
           alt="image"
           fill
           style={{

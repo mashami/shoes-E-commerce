@@ -1,12 +1,18 @@
 
+export interface ImageObject {
+  id: string;
+  url: string;
+}
+
+
 export interface ProductTypes{
     id:string
     name:string,
     price:number,
     liked?:boolean
     description?:string
-    pictures:string[]
-    color:string[]
+    pictures:ImageObject[]
+    color?:string[]
     size:number[]
 
 }

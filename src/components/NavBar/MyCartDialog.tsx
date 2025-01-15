@@ -41,8 +41,6 @@ const MyCartDialog = ({ open, setOpen }: TestDialogProps) => {
       return product;
     });
     setCartProducts(updatedCartProducts);
-
-    console.log("updatedCartProducts ====>", updatedCartProducts);
   };
 
   const removeHandle = ({ brandId, productId }: findProductProps) => {

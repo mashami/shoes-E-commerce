@@ -105,7 +105,7 @@ const MainComp = ({ brandName, product, brandId }: MainCardProps) => {
         <ViewItemDialog
           setOpenEditDialog={setOpenEditProductDialog}
           brandName={brandName}
-          // brandId={brandId}
+          brandId={brandId}
           product={dataFilled}
           openViewDialog={isViewItemOpen}
           setOpenViewDialog={setIsViewItemOpen}
@@ -115,6 +115,7 @@ const MainComp = ({ brandName, product, brandId }: MainCardProps) => {
       {dataFilled && (
         <EditProductDialog
           brandName={brandName}
+          brandId={brandId}
           product={dataFilled}
           isEditProductOpen={openEditProducrDialog}
           setIsEditProductOpen={setOpenEditProductDialog}

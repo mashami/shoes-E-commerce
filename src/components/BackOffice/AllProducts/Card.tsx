@@ -24,10 +24,9 @@ const Card = ({
   brandId
 }: CardProps) => {
   const {
-    pictures: [imageUrl] = [][0],
+    pictures: [{ url: imageUrl }] = [][0],
     price,
     name: shoesName,
-
     description
   } = product;
 
