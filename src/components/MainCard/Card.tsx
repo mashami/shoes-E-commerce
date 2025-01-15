@@ -34,7 +34,6 @@ const Card = ({
     liked = false
   } = product;
 
-  console.log(imageUrl);
 
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);

@@ -147,8 +147,6 @@ const EditProductDialog = ({
     return filter;
   }, [images]);
 
-  console.log(imagesWithoutUrl.length);
-
   const editHandle = () => {
     editProductById({
       brandId: brandId,
