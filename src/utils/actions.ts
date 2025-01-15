@@ -12,6 +12,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "nike-1",
         name: "Nike Product 1",
+        totalProducts:10,
         price: 100,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -22,6 +23,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "nike-2",
         name: "Nike Product 2",
+        totalProducts:10,
         price: 110,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -32,6 +34,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "nike-3",
         name: "Nike Product 3",
+        totalProducts:10,
         price: 120,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -42,6 +45,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "nike-4",
         name: "Nike Product 4",
+        totalProducts:10,
         price: 130,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -52,6 +56,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "nike-5",
         name: "Nike Product 5",
+        totalProducts:10,
         price: 140,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -63,6 +68,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "nike-6",
         name: "Nike Product 6",
+        totalProducts:10,
         price: 150,
         liked:false,
           pictures: [{id:"1", url:"/image/nike.png"}, {id:"2",url:"/image/nike.png"}, {id:"3", url:"/image/nike.png"}, {id:"4", url:"/image/nike.png"}],
@@ -73,6 +79,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "nike-7",
         name: "Nike Product 7",
+        totalProducts:10,
         price: 160,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
           pictures: [{id:"1", url:"/image/nike.png"}, {id:"2",url:"/image/nike.png"}, {id:"3", url:"/image/nike.png"}, {id:"4", url:"/image/nike.png"}],
@@ -83,6 +90,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "nike-8",
         name: "Nike Product 8",
+        totalProducts:10,
         price: 170,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -100,6 +108,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "adidas-1",
         name: "Adidas Product 1",
+        totalProducts:10,
         price: 120,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -110,6 +119,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "adidas-2",
         name: "Adidas Product 2",
+        totalProducts:10,
         price: 130,
         liked:false,
         pictures: [{id:"1",url:"/image/adida.webp"}, {id:"2", url:"/image/adida.webp"}, {id:"3", url:"/image/adida.webp"}, {id:"4", url:"/image/adida.webp"}],
@@ -120,6 +130,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "adidas-3",
         name: "Adidas Product 3",
+        totalProducts:10,
         price: 140,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -131,6 +142,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "adidas-4",
         name: "Adidas Product 4",
+        totalProducts:30,
         price: 150,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -143,6 +155,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "adidas-5",
         name: "Adidas Product 5",
+        totalProducts:10,
         price: 160,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -154,6 +167,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "adidas-6",
         name: "Adidas Product 6",
+        totalProducts:10,
         price: 170,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -165,6 +179,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "adidas-7",
         name: "Adidas Product 7",
+        totalProducts:10,
         price: 180,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -176,6 +191,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "adidas-8",
         name: "Adidas Product 8",
+        totalProducts:10,
         price: 190,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -189,10 +205,12 @@ export const staticShoesData: ShoesType[] = [
   {
     id: "3",
     brandName: "Puma",
+    
     product: [
       {
         id: "puma-1",
         name: "Puma Product 1",
+        totalProducts:10,
         price: 90,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -203,6 +221,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "puma-2",
         name: "Puma Product 2",
+        totalProducts:10,
         price: 100,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -214,6 +233,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "puma-3",
         name: "mashami",
+        totalProducts:10,
         price: 110,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -225,6 +245,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "puma-4",
         name: "Puma Product 4",
+        totalProducts:10,
         price: 120,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -236,6 +257,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "puma-5",
         name: "Puma Product 5",
+        totalProducts:10,
         price: 130,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -247,6 +269,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "puma-6",
         name: "Puma Product 6",
+        totalProducts:10,
         price: 140,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         pictures: [{id:"1",url:"/image/puma.avif"}, {id:"2",url:"/image/puma.avif"},{id:"3",url:"/image/puma.avif"},{id:"4",url:"/image/puma.avif"}],
@@ -257,6 +280,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "puma-7",
         name: "Puma Product 7",
+        totalProducts:10,
         price: 150,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
@@ -268,6 +292,7 @@ export const staticShoesData: ShoesType[] = [
       {
         id: "puma-8",
         name: "Puma Product 8",
+        totalProducts:10,
         price: 160,
         liked:true,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",

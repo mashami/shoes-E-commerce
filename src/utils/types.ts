@@ -14,6 +14,7 @@ export interface ProductTypes{
     pictures:ImageObject[]
     color?:string[]
     size:number[]
+    totalProducts:number
 
 }
 
@@ -21,7 +22,7 @@ export interface ShoesType {
     id:string
     brandName:string
     product:ProductTypes[]
-    totalProducts?:number
+    
 }
 
 export interface findProductProps{

@@ -134,6 +134,7 @@ const AddProductDialog = ({
     const updatedImageObjects = images.map((image) =>
       imagesToUpdate.includes(image) ? updatedImages.shift() || image : image
     );
+    console.log("updatedImageObjects ===>", updatedImageObjects);
 
     setImages(updatedImageObjects);
   };
@@ -159,7 +160,6 @@ const AddProductDialog = ({
 
     return filter;
   }, [images]);
-
 
   return (
     <>

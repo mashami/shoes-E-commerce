@@ -67,6 +67,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     }
   };
 
+  console.log("dataFilled  =>", dataFilled);
+
   const value: AppContextData = {
     openCartDialog,
     searchValue,
