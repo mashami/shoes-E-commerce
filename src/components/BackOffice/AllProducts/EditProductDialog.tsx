@@ -56,7 +56,9 @@ const EditProductDialog = ({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [brandName, setBrandName] = useState<string>(name);
   const [newBrand, setNewBrand] = useState<string>("");
-  const [totalProducts, setTotalProducts] = useState<number>(0);
+  const [totalProducts, setTotalProducts] = useState<number>(
+    product.totalProducts
+  );
   const [images, setImages] = useState<ImageObject[]>(product.pictures);
   const [isPending, startTransition] = useTransition();
   const isMutating = isPending || isLoading;
@@ -122,8 +124,12 @@ const EditProductDialog = ({
       imagesToUpdate.includes(image) ? updatedImages.shift() || image : image
     );
 
+    console.log("updatedImageObjects ====>", updatedImageObjects);
+
     setImages(updatedImageObjects);
   };
+
+  console.log("images ===>", images);
 
   const sizesHandle = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -141,14 +147,6 @@ const EditProductDialog = ({
     return filter;
   }, [images]);
 
-  const imagesWithoutUrl = useMemo(() => {
-    const filter = images.filter((image) => image.url === "");
-
-    return filter;
-  }, [images]);
-
-  console.log(imagesWithoutUrl.length);
-
   const editHandle = () => {
     editProductById({
       brandId: brandId,
@@ -159,7 +157,8 @@ const EditProductDialog = ({
         pictures: images,
         price: productPrice,
         id: product.id,
-        size: sizes
+        size: sizes,
+        totalProducts
       }
     });
     setIsEditProductOpen(false);

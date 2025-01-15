@@ -81,8 +81,6 @@ const AddProductDialog = ({
   const [sizes, setSizes] = useState<string[]>();
   const [size, setSize] = useState<string>("");
 
-  console.log(brandNames);
-
   const deleteImageHandle = (id: string) => {
     const updatedImages = images.map((image) => {
       if (image.id === id) {
@@ -136,6 +134,7 @@ const AddProductDialog = ({
     const updatedImageObjects = images.map((image) =>
       imagesToUpdate.includes(image) ? updatedImages.shift() || image : image
     );
+    console.log("updatedImageObjects ===>", updatedImageObjects);
 
     setImages(updatedImageObjects);
   };
@@ -161,8 +160,6 @@ const AddProductDialog = ({
 
     return filter;
   }, [images]);
-
-  console.log(imagesWithoutUrl.length);
 
   return (
     <>
