@@ -34,7 +34,9 @@ const CartDialog = ({
 }: ShoesItemDialogProps) => {
   const [sizeValue, setSizeValue] = useState<number>(product.size[0]);
   const [imageIndex, setImageIndex] = useState<number>(0);
-  const [color, setColor] = useState<string>(product.color[0]);
+  const [color, setColor] = useState<string | undefined>(
+    product.color ? product.color[0] : undefined
+  );
   const [itemsNumber, setItemsNumber] = useState<number>(1);
   const router = useRouter();
   const { toast } = useToast();
@@ -44,7 +46,7 @@ const CartDialog = ({
     if (openCartDialog === false) {
       setImageIndex(0);
       setSizeValue(product.size[0]);
-      setColor(product.color[0]);
+      setColor(product.color ? product.color[0] : undefined);
       setItemsNumber(1);
       setPrice(product.price);
     }
@@ -111,7 +113,7 @@ const CartDialog = ({
                 className="absolute inset-0"
               >
                 <Image
-                  src={product.pictures[imageIndex]}
+                  src={product.pictures[imageIndex].url}
                   alt="Shoes-image"
                   fill
                   style={{
@@ -147,7 +149,7 @@ const CartDialog = ({
                   }}
                 >
                   <Image
-                    src={pic}
+                    src={pic.url}
                     alt="Shoes-thumbnail"
                     fill
                     style={{

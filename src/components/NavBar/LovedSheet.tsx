@@ -35,7 +35,7 @@ const LovedSheet = ({ isSheetOpen, setIsSheetOpen }: LovedSheetProps) => {
                 brandId={product.brandId}
                 brandName={product.brandName}
                 id={product.product.id}
-                imageUrl={product.product.pictures[0]}
+                imageUrl={product.product.pictures[0].url}
                 price={product.product.price}
                 productName={product.product.name}
                 description={product.product.description}

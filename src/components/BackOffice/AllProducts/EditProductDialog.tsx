@@ -24,51 +24,28 @@ import {
   SelectValue
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { staticShoesData } from "@/utils/actions";
+import { editProductById, staticShoesData } from "@/utils/actions";
 
 import style from "@/components/FormField/FormField.module.scss";
 import { FormField } from "@/components/FormField";
 import { ColorPicker } from "@/components/ColorPicker";
 import { Button } from "@/components/ui/button";
 import { Loader } from "@/components/Loader";
-import { ProductTypes } from "@/utils/types";
+import { ImageObject, ProductTypes } from "@/utils/types";
 
 interface EditProductDialogProps {
   setIsEditProductOpen: React.Dispatch<SetStateAction<boolean>>;
   isEditProductOpen: boolean;
   product: ProductTypes;
-  // brandId: string;
+  brandId: string;
   brandName: string;
 }
-
-interface ImageObject {
-  id: string;
-  url: string;
-}
-
-const getInitialImages = () => [
-  {
-    id: v4(),
-    url: ""
-  },
-  {
-    id: v4(),
-    url: ""
-  },
-  {
-    id: v4(),
-    url: ""
-  },
-  {
-    id: v4(),
-    url: ""
-  }
-];
 
 const EditProductDialog = ({
   setIsEditProductOpen,
   isEditProductOpen,
   product,
+  brandId,
   brandName: name
 }: EditProductDialogProps) => {
   const [productName, setProductName] = useState<string>(product.name);
@@ -80,7 +57,7 @@ const EditProductDialog = ({
   const [brandName, setBrandName] = useState<string>(name);
   const [newBrand, setNewBrand] = useState<string>("");
   const [totalProducts, setTotalProducts] = useState<number>(0);
-  const [images, setImages] = useState<ImageObject[]>(getInitialImages());
+  const [images, setImages] = useState<ImageObject[]>(product.pictures);
   const [isPending, startTransition] = useTransition();
   const isMutating = isPending || isLoading;
 
@@ -90,8 +67,6 @@ const EditProductDialog = ({
   );
   const [sizes, setSizes] = useState<number[]>(product.size);
   const [size, setSize] = useState<number>(0);
-
-  console.log(brandNames);
 
   const deleteImageHandle = (id: string) => {
     const updatedImages = images.map((image) => {
@@ -173,6 +148,22 @@ const EditProductDialog = ({
   }, [images]);
 
   console.log(imagesWithoutUrl.length);
+
+  const editHandle = () => {
+    editProductById({
+      brandId: brandId,
+      productId: product.id,
+      productUpdated: {
+        color: colorSelected,
+        name: productName,
+        pictures: images,
+        price: productPrice,
+        id: product.id,
+        size: sizes
+      }
+    });
+    setIsEditProductOpen(false);
+  };
 
   return (
     <>
@@ -400,7 +391,7 @@ const EditProductDialog = ({
                   type="submit"
                   text="Done"
                   loading={isMutating}
-                  // onClick={createProductHandler}
+                  onClick={editHandle}
                   svg={
                     <svg
                       width={17}

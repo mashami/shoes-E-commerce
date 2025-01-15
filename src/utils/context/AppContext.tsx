@@ -21,6 +21,7 @@ interface AppContextData {
   searchValue: string;
   setSearchValue: Dispatch<SetStateAction<string>>;
   setActiveMenu: Dispatch<SetStateAction<string>>;
+  setFilteredShoes: Dispatch<SetStateAction<ShoesType[]>>;
   activeMenu: string;
 }
 
@@ -77,7 +78,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     dataFilled,
     setDataFilled,
     activeMenu,
-    setActiveMenu
+    setActiveMenu,
+    setFilteredShoes
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

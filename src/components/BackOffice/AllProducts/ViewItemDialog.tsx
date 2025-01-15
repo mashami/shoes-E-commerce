@@ -20,6 +20,7 @@ interface ViewItemDialogProps {
   setOpenViewDialog: Dispatch<SetStateAction<boolean>>;
   product: ProductTypes;
   brandName: string;
+  brandId: string;
   setOpenEditDialog: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -75,7 +76,7 @@ const ViewItemDialog = ({
                     className="relative h-full w-full rounded-xl overflow-hidden select-none"
                   >
                     <Image
-                      src={p}
+                      src={p.url}
                       alt="Shoes-image"
                       fill
                       style={{
@@ -181,7 +182,7 @@ const ViewItemDialog = ({
                   }}
                 >
                   <Image
-                    src={pic}
+                    src={pic.url}
                     alt="Shoes-image"
                     fill
                     style={{
