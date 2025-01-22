@@ -8,9 +8,9 @@ import RadarChartComp from "../RadarChartComp";
 
 const Dashoard = () => {
   return (
-    <div className="grid grid-cols-10 items-start gap-7 pt-4">
-      <div className="grid col-span-7 space-y-6">
-        <div className="flex flex-wrap items-center gap-x-4 justify-between">
+    <div className="grid md:grid-cols-8 lg:grid-cols-10 grid-cols-1 items-start w-full gap-7 pt-4">
+      <div className="grid md:col-span-5 lg:col-span-7 space-y-6">
+        <div className="flex flex-wrap items-center gap-4 md:justify-between justify-center">
           <Statistic
             title="Sales"
             value="3210"
@@ -118,7 +118,7 @@ const Dashoard = () => {
         <AreaChartComp />
       </div>
 
-      <div className="grid col-span-3 space-y-6">
+      <div className="grid md:col-span-3 lg:col-span-3 w-full space-y-6">
         <div className="bg-blue-50 p-4 rounded-xl">
           <RecentActivity />
         </div>

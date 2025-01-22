@@ -46,17 +46,22 @@ const RecentActivity = () => {
 
       <div className="pt-5 space-y-4 pb-4">
         {activities.map((activity, index) => (
-          <div key={index} className="grid grid-cols-12 items-start relative">
+          <div
+            key={index}
+            className="grid md:grid-cols-12 grid-cols-12 w-full items-start relative"
+          >
             <p className="opacity-75 col-span-3 ">{activity.time}</p>
 
-            <div className="flex items-center col-span-1 ">
-              <span
-                className={`w-2 h-2 mt-2 rounded-full ${activity.color}`}
-              ></span>
+            <div className="grid grid-cols-5 col-span-1">
+              <div className="col-span-1 flex-shrink-0 ">
+                <span
+                  className={`w-2 h-2 mt-2 flex flex-shrink-0 rounded-full  ${activity.color}`}
+                ></span>
+              </div>
+              <span className="absolute w-2 h-full bg-black opacity-10 rounded-sm my-5"></span>
             </div>
-            <span className="absolute w-1.5 h-full bg-black opacity-10 rounded-sm left-[72px] my-5"></span>
 
-            <p className="flex flex-1 flex-wrap col-span-8 ">{activity.text}</p>
+            <p className="grid col-span-8 flex-1 flex-wrap">{activity.text}</p>
           </div>
         ))}
       </div>

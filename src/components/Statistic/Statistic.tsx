@@ -21,7 +21,7 @@ const Statistic = ({
   persentage
 }: StatisticProps) => {
   return (
-    <div className="space-y-3 border border-[#8155FF] border-t-4  pt-2 pb-5  px-3 min-w-60 rounded-xl shadow-md">
+    <div className="space-y-3 bg-white border border-[#8155FF] border-t-4  pt-2 pb-5  px-3 md:min-w-full lg:min-w-60 min-w-full rounded-xl shadow-md">
       <div className="flex items-center space-x-2">
         <p className="text-[23px] text-black font-medium ">{title}</p>
         <span className="h-4 w-px bg-blue-300"></span>
