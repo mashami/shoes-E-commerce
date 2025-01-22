@@ -22,7 +22,7 @@ import { cn } from "@/lib/utils";
 import { useAppContext } from "@/utils/context/AppContext";
 
 // Menu items.
-const items = [
+export const items = [
   {
     title: "Dashboard",
     label: "dashboard",

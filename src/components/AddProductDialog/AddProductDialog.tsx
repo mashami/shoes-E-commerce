@@ -203,12 +203,12 @@ const AddProductDialog = ({
           <div className="flex flex-col gap-3 w-full">
             <p className="text-[#8155FF] font-semibold">Brand name</p>
 
-            <div className="flex items-center justify-between gap-5">
+            <div className="flex md:flex-row flex-col items-center justify-between gap-5">
               <Select
                 onValueChange={(value) => setBrandName(value)}
                 value={brandName}
               >
-                <SelectTrigger className="w-[180px]">
+                <SelectTrigger className="md:w-[180px] w-full">
                   <SelectValue placeholder="Brand Name" />
                 </SelectTrigger>
                 <SelectContent>
@@ -224,7 +224,7 @@ const AddProductDialog = ({
 
               <Input
                 placeholder="Add new brand"
-                className="flex flex-col flex-1 max-w-[200px] focus-visible:ring-[#8155FF]"
+                className="flex flex-col flex-1 md:max-w-[200px] max-w-full focus-visible:ring-[#8155FF]"
                 value={newBrand}
                 onChange={(e) => {
                   setNewBrand(e.target.value);
@@ -233,7 +233,7 @@ const AddProductDialog = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-x-16">
+          <div className="grid md:grid-cols-2 grid-cols-1 md:gap-x-16 gap-y-4">
             <div className="flex flex-col gap-2">
               <form onSubmit={(event) => sizesHandle(event)} action="">
                 <FormField
@@ -286,7 +286,7 @@ const AddProductDialog = ({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-[11px] bg-white p-4 ">
+          <div className="grid grid-cols-2 gap-[11px] bg-white md:p-4 p-0">
             {imagesWithUrl.map((image) => (
               <div
                 key={image.id}

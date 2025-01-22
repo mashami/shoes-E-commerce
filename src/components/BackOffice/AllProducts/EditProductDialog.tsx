@@ -62,7 +62,6 @@ const EditProductDialog = ({
   const [images, setImages] = useState<ImageObject[]>(product.pictures);
   const [isPending, startTransition] = useTransition();
   const isMutating = isPending || isLoading;
-
   const brandNames = staticShoesData.map((value) => value.brandName);
   const [colorSelected, setColorSeleted] = useState<string[] | undefined>(
     product.color

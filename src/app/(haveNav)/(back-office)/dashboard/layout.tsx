@@ -10,8 +10,9 @@ export default function RootLayout({
     <div className="">
       <SidebarProvider>
         <AppSidebar />
+
         {/* <SidebarTrigger position="right" /> */}
-        <div className="w-full mt-5">{children}</div>
+        <div className="w-full mt-5 relative">{children}</div>
       </SidebarProvider>
     </div>
   );

@@ -4,17 +4,20 @@
 import AddProductDialog from "@/components/AddProductDialog/AddProductDialog";
 import { AllProducts } from "@/components/BackOffice/AllProducts";
 import Dashoard from "@/components/BackOffice/Dashoard/Dashoard";
+import { Menu } from "@/components/Menu";
 import { Button } from "@/components/ui/button";
 import { useAppContext } from "@/utils/context/AppContext";
+import { MenuIcon } from "lucide-react";
 import React, { useState } from "react";
 
 const Backoffice = () => {
   const [isAddProductOpen, setIsAddProductOpen] = useState<boolean>(false);
   const { activeMenu } = useAppContext();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <>
-      <div className="flex items-center justify-between">
+    <div className="relative w-full">
+      <div className="fixed flex items-center justify-between py-2 bg-white z-50 left-0 right-0 md:w-[calc(100%-320px)] md:left-[290px] px-6 md:top-[75px] top-[73px]">
         <p className="text-3xl font-medium">Order</p>
 
         <Button
@@ -55,21 +58,33 @@ const Backoffice = () => {
           }
         />
       </div>
-      {activeMenu == "dashboard" && <Dashoard />}
-      {activeMenu == "products" && (
-        <div>
-          <AllProducts />
-        </div>
-      )}
-      {activeMenu == "paid" && <div>paid</div>}
-      {activeMenu == "favolate" && <div>favolate</div>}
-      {activeMenu == "settings" && <div>settings</div>}
 
-      <AddProductDialog
-        isAddProductOpen={isAddProductOpen}
-        setIsAddProductOpen={setIsAddProductOpen}
-      />
-    </>
+      <div
+        className="flex z-50 fixed md:hidden left-0 right-0 md:left-[290px] px-6 top-[130px]"
+        onClick={() => setIsOpen(true)}
+      >
+        <MenuIcon />
+      </div>
+
+      <div className="pt-20">
+        {activeMenu == "dashboard" && <Dashoard />}
+        {activeMenu == "products" && (
+          <div>
+            <AllProducts />
+          </div>
+        )}
+        {activeMenu == "paid" && <div>paid</div>}
+        {activeMenu == "favolate" && <div>favolate</div>}
+        {activeMenu == "settings" && <div>settings</div>}
+
+        <AddProductDialog
+          isAddProductOpen={isAddProductOpen}
+          setIsAddProductOpen={setIsAddProductOpen}
+        />
+      </div>
+
+      <Menu isOpenMenu={isOpen} setIsOpenMenu={setIsOpen} />
+    </div>
   );
 };
 
