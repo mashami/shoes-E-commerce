@@ -34,7 +34,6 @@ const Card = ({
     liked = false
   } = product;
 
-
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const { setDataFilled, dataFilled } = useAppContext();
@@ -70,7 +69,7 @@ const Card = ({
         onClick={handleFindProduct}
         className=" group bg-[#E8EAED] rounded-[16px] overflow-hidden space-y-2 pb-3 relative  shadow-xl cursor-pointer border-[0.5px] border-white/10"
       >
-        <div className="w-full h-[231px] relative overflow-hidden">
+        <div className="w-full h-[231px] relative overflow-hidden bg-white">
           <Image
             src={imageUrl.url}
             style={{
