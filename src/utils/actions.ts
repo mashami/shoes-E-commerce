@@ -16,7 +16,7 @@ export const staticShoesData: ShoesType[] = [
         price: 100,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1", url:"/image/v1.webp"}, {id:"2",url:"/image/v2.webp"},{id:"3",url: "/image/v3.webp"}, {id:"4",url:"/image/v4.webp"}],
+        pictures: [{id:"1", url:"/image/nike/nike1/1.jpg"}, {id:"2",url:"/image/nike/nike1/2.jpg"},{id:"3",url:"/image/nike/nike1/3.jpg"}, {id:"4",url:"/image/nike/nike1/4.jpg"}],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
       },
@@ -27,7 +27,7 @@ export const staticShoesData: ShoesType[] = [
         price: 110,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/nike3.png"}, {id:"2",url:"/image/nike.png"}, {id:"3", url: "/image/nike4.png"}, {id:"4",url:"/image/nike5.png"}],
+        pictures: [{id:"1", url:"/image/nike/nike2/1.jpg"}, {id:"2",url:"/image/nike/nike2/2.jpg"},{id:"3",url:"/image/nike/nike2/3.jpg"}, {id:"4",url:"/image/nike/nike2/4.jpg"}],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
       },
@@ -38,8 +38,7 @@ export const staticShoesData: ShoesType[] = [
         price: 120,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-         pictures: [{id:"1", url:"/image/nike.png"}, {id:"2", url:"/image/nike.png"},{id:"3", url:"/image/nike.png"},{id:"4", url:"/image/nike.png"}],
-        color: ["Black", "White", "Red"],
+        pictures: [{id:"1", url:"/image/nike/nike3/3.png"}, {id:"2",url:"/image/nike/nike3/2.jpg"},{id:"3",url:"/image/nike/nike3/1.jpg"}, {id:"4",url:"/image/nike/nike3/4.jpg"}],
         size: [7, 8, 9, 10, 11],
       },
       {
@@ -49,7 +48,7 @@ export const staticShoesData: ShoesType[] = [
         price: 130,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-          pictures: [{id:"1", url:"/image/nike.png"}, {id:"2",url:"/image/nike.png"}, {id:"3", url:"/image/nike.png"}, {id:"4", url:"/image/nike.png"}],
+        pictures: [{id:"1", url:"/image/nike/nike4/2.jpg"}, {id:"2",url:"/image/nike/nike4/1.jpg"},{id:"3",url:"/image/nike/nike4/3.jpg"}, {id:"4",url:"/image/nike/nike4/4.jpg"}],
         color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
       },
@@ -60,9 +59,7 @@ export const staticShoesData: ShoesType[] = [
         price: 140,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-          pictures: [{id:"1", url:"/image/nike.png"}, {id:"2",url:"/image/nike.png"}, {id:"3", url:"/image/nike.png"}, {id:"4", url:"/image/nike.png"}],
-
-        color: ["Black", "White", "Red"],
+        pictures: [{id:"1", url:"/image/nike/nike5/1.jpg"}, {id:"2",url:"/image/nike/nike5/2.jpg"},{id:"3",url:"/image/nike/nike5/3.jpg"}, {id:"4",url:"/image/nike/nike5/4.jpg"}],
         size: [7, 8, 9, 10, 11],
       },
       {
@@ -71,9 +68,7 @@ export const staticShoesData: ShoesType[] = [
         totalProducts:10,
         price: 150,
         liked:false,
-          pictures: [{id:"1", url:"/image/nike.png"}, {id:"2",url:"/image/nike.png"}, {id:"3", url:"/image/nike.png"}, {id:"4", url:"/image/nike.png"}],
-
-        color: ["Black", "White", "Red"],
+        pictures: [{id:"1", url:"/image/nike/nike6/1.jpg"}, {id:"2",url:"/image/nike/nike6/2.jpg"},{id:"3",url:"/image/nike/nike6/3.jpg"}, {id:"4",url:"/image/nike/nike6/4.jpg"}],
         size: [7, 8, 9, 10, 11],
       },
       {
@@ -82,9 +77,7 @@ export const staticShoesData: ShoesType[] = [
         totalProducts:10,
         price: 160,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-          pictures: [{id:"1", url:"/image/nike.png"}, {id:"2",url:"/image/nike.png"}, {id:"3", url:"/image/nike.png"}, {id:"4", url:"/image/nike.png"}],
-
-        color: ["Black", "White", "Red"],
+        pictures: [{id:"1", url:"/image/nike/nike7/1.webp"}, {id:"2",url:"/image/nike/nike7/2.webp"},{id:"3",url:"/image/nike/nike7/3.webp"}, {id:"4",url:"/image/nike/nike7/4.webp"}],
         size: [7, 8, 9, 10, 11],
       },
       {
@@ -94,9 +87,8 @@ export const staticShoesData: ShoesType[] = [
         price: 170,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-          pictures: [{id:"1", url:"/image/nike.png"}, {id:"2",url:"/image/nike.png"}, {id:"3", url:"/image/nike.png"}, {id:"4", url:"/image/nike.png"}],
+        pictures: [{id:"1", url:"/image/nike/nike8/1.jpg"}, {id:"2",url:"/image/nike/nike8/2.jpg"},{id:"3",url:"/image/nike/nike8/3.jpg"}, {id:"4",url:"/image/nike/nike8/4.jpg"}],
 
-        color: ["Black", "White", "Red"],
         size: [7, 8, 9, 10, 11],
       },
     ],
@@ -112,7 +104,7 @@ export const staticShoesData: ShoesType[] = [
         price: 120,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/adida.webp"}, {id:"2", url:"/image/adida.webp"}, {id:"3", url:"/image/adida.webp"}, {id:"4", url:"/image/adida.webp"}],
+        pictures: [{id:"1",url:"/image/adidas/adidas1/1.webp"}, {id:"2", url:"/image/adidas/adidas1/2.jpg"}, {id:"3", url:"/image/adidas/adidas1/3.jpeg"}, {id:"4", url:"/image/adidas/adidas1/4.jpeg"}],
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
       },
@@ -122,7 +114,8 @@ export const staticShoesData: ShoesType[] = [
         totalProducts:10,
         price: 130,
         liked:false,
-        pictures: [{id:"1",url:"/image/adida.webp"}, {id:"2", url:"/image/adida.webp"}, {id:"3", url:"/image/adida.webp"}, {id:"4", url:"/image/adida.webp"}],
+        pictures: [{id:"1",url:"/image/adidas/adidas2/1.jpg"}, {id:"2", url:"/image/adidas/adidas2/2.jpeg"}, {id:"3", url:"/image/adidas/adidas2/3.jpeg"}, {id:"4", url:"/image/adidas/adidas2/4.jpeg"}],
+
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -134,7 +127,7 @@ export const staticShoesData: ShoesType[] = [
         price: 140,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/adida.webp"}, {id:"2", url:"/image/adida.webp"}, {id:"3", url:"/image/adida.webp"}, {id:"4", url:"/image/adida.webp"}],
+        pictures: [{id:"1",url:"/image/adidas/adidas3/1.avif"}, {id:"2", url:"/image/adidas/adidas3/2.jpeg"}, {id:"3", url:"/image/adidas/adidas3/3.jpeg"}, {id:"4", url:"/image/adidas/adidas3/4.jpeg"}],
 
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -147,7 +140,7 @@ export const staticShoesData: ShoesType[] = [
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
 
-        pictures: [{id:"1",url:"/image/adida.webp"}, {id:"2", url:"/image/adida.webp"}, {id:"3", url:"/image/adida.webp"}, {id:"4", url:"/image/adida.webp"}],
+       pictures: [{id:"1",url:"/image/adidas/adidas4/1.webp"}, {id:"2", url:"/image/adidas/adidas4/2.jpeg"}, {id:"3", url:"/image/adidas/adidas4/3.jpeg"}, {id:"4", url:"/image/adidas/adidas4/4.jpeg"}],
 
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -159,7 +152,7 @@ export const staticShoesData: ShoesType[] = [
         price: 160,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/adida.webp"}, {id:"2", url:"/image/adida.webp"}, {id:"3", url:"/image/adida.webp"}, {id:"4", url:"/image/adida.webp"}],
+        pictures: [{id:"1",url:"/image/adidas/adidas5/1.jpeg"}, {id:"2", url:"/image/adidas/adidas5/2.jpeg"}, {id:"3", url:"/image/adidas/adidas5/3.jpeg"}, {id:"4", url:"/image/adidas/adidas5/4.jpeg"}],
 
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
@@ -171,8 +164,8 @@ export const staticShoesData: ShoesType[] = [
         price: 170,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/adida.webp"}, {id:"2", url:"/image/adida.webp"}, {id:"3", url:"/image/adida.webp"}, {id:"4", url:"/image/adida.webp"}],
-        
+        pictures: [{id:"1",url:"/image/adidas/adidas6/1.jpeg"}, {id:"2", url:"/image/adidas/adidas6/2.jpeg"}, {id:"3", url:"/image/adidas/adidas6/3.jpeg"}, {id:"4", url:"/image/adidas/adidas6/4.jpeg"}],
+
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
       },
@@ -183,8 +176,8 @@ export const staticShoesData: ShoesType[] = [
         price: 180,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/adida.webp"}, {id:"2", url:"/image/adida.webp"}, {id:"3", url:"/image/adida.webp"}, {id:"4", url:"/image/adida.webp"}],
-        
+        pictures: [{id:"1",url:"/image/adidas/adidas7/1.jpeg"}, {id:"2", url:"/image/adidas/adidas7/2.jpeg"}, {id:"3", url:"/image/adidas/adidas7/3.jpeg"}, {id:"4", url:"/image/adidas/adidas7/4.jpeg"}],
+
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
       },
@@ -195,8 +188,8 @@ export const staticShoesData: ShoesType[] = [
         price: 190,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/adida.webp"}, {id:"2", url:"/image/adida.webp"}, {id:"3", url:"/image/adida.webp"}, {id:"4", url:"/image/adida.webp"}],
-        
+        pictures: [{id:"1",url:"/image/adidas/adidas8/1.jpeg"}, {id:"2", url:"/image/adidas/adidas8/2.jpeg"}, {id:"3", url:"/image/adidas/adidas8/3.jpeg"}, {id:"4", url:"/image/adidas/adidas8/4.jpeg"}],
+
         color: ["Blue", "Grey", "White"],
         size: [6, 7, 8, 9, 10],
       },
@@ -214,7 +207,7 @@ export const staticShoesData: ShoesType[] = [
         price: 90,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/puma.avif"}, {id:"2",url:"/image/puma.avif"},{id:"3",url:"/image/puma.avif"},{id:"4",url:"/image/puma.avif"}],
+        pictures: [{id:"1",url:"/image/puma/puma1/1.avif"}, {id:"2",url:"/image/puma/puma1/2.avif"},{id:"3",url:"/image/puma/puma1/3.avif"},{id:"4",url:"/image/puma/puma1/4.avif"}],
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
       },
@@ -225,7 +218,7 @@ export const staticShoesData: ShoesType[] = [
         price: 100,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/puma.avif"}, {id:"2",url:"/image/puma.avif"},{id:"3",url:"/image/puma.avif"},{id:"4",url:"/image/puma.avif"}],
+        pictures: [{id:"1",url:"/image/puma/puma2/1.avif"}, {id:"2",url:"/image/puma/puma2/2.avif"},{id:"3",url:"/image/puma/puma2/3.avif"},{id:"4",url:"/image/puma/puma2/4.avif"}],
         
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -237,7 +230,7 @@ export const staticShoesData: ShoesType[] = [
         price: 110,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/puma.avif"}, {id:"2",url:"/image/puma.avif"},{id:"3",url:"/image/puma.avif"},{id:"4",url:"/image/puma.avif"}],
+         pictures: [{id:"1",url:"/image/puma/puma3/1.avif"}, {id:"2",url:"/image/puma/puma3/2.avif"},{id:"3",url:"/image/puma/puma3/3.avif"},{id:"4",url:"/image/puma/puma3/4.avif"}],
         
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -249,7 +242,7 @@ export const staticShoesData: ShoesType[] = [
         price: 120,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/puma.avif"}, {id:"2",url:"/image/puma.avif"},{id:"3",url:"/image/puma.avif"},{id:"4",url:"/image/puma.avif"}],
+        pictures: [{id:"1",url:"/image/puma/puma4/1.webp"}, {id:"2",url:"/image/puma/puma4/2.webp"},{id:"3",url:"/image/puma/puma4/3.jpeg"},{id:"4",url:"/image/puma/puma4/4.jpeg"}],
         
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -261,7 +254,7 @@ export const staticShoesData: ShoesType[] = [
         price: 130,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/puma.avif"}, {id:"2",url:"/image/puma.avif"},{id:"3",url:"/image/puma.avif"},{id:"4",url:"/image/puma.avif"}],
+       pictures: [{id:"1",url:"/image/puma/puma5/1.webp"}, {id:"2",url:"/image/puma/puma5/2.jpeg"},{id:"3",url:"/image/puma/puma5/3.jpeg"},{id:"4",url:"/image/puma/puma5/4.jpeg"}],
         
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
@@ -272,8 +265,8 @@ export const staticShoesData: ShoesType[] = [
         totalProducts:10,
         price: 140,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/puma.avif"}, {id:"2",url:"/image/puma.avif"},{id:"3",url:"/image/puma.avif"},{id:"4",url:"/image/puma.avif"}],
-        
+        pictures: [{id:"1",url:"/image/puma/puma6/1.jpg"}, {id:"2",url:"/image/puma/puma6/2.jpeg"},{id:"3",url:"/image/puma/puma6/3.jpeg"},{id:"4",url:"/image/puma/puma6/4.jpeg"}],
+       
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
       },
@@ -284,8 +277,8 @@ export const staticShoesData: ShoesType[] = [
         price: 150,
         liked:false,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/puma.avif"}, {id:"2",url:"/image/puma.avif"},{id:"3",url:"/image/puma.avif"},{id:"4",url:"/image/puma.avif"}],
-        
+        pictures: [{id:"1",url:"/image/puma/puma7/1.jpeg"}, {id:"2",url:"/image/puma/puma7/2.jpeg"},{id:"3",url:"/image/puma/puma7/3.jpeg"},{id:"4",url:"/image/puma/puma7/4.jpeg"}],
+       
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
       },
@@ -296,8 +289,8 @@ export const staticShoesData: ShoesType[] = [
         price: 160,
         liked:true,
         description:"Bardi AirFoce is a portable ioniser with H11 HEPA",
-        pictures: [{id:"1",url:"/image/puma.avif"}, {id:"2",url:"/image/puma.avif"},{id:"3",url:"/image/puma.avif"},{id:"4",url:"/image/puma.avif"}],
-        
+        pictures: [{id:"1",url:"/image/puma/puma8/1.jpeg"}, {id:"2",url:"/image/puma/puma8/2.jpeg"},{id:"3",url:"/image/puma/puma8/3.jpeg"},{id:"4",url:"/image/puma/puma8/4.jpeg"}],
+       
         color: ["Green", "Black", "Yellow"],
         size: [8, 9, 10, 11, 12],
       },

@@ -42,6 +42,8 @@ const CartDialog = ({
   const { toast } = useToast();
   const [price, setPrice] = useState<number>(product.price);
 
+  console.log(product.color);
+
   useEffect(() => {
     if (openCartDialog === false) {
       setImageIndex(0);
