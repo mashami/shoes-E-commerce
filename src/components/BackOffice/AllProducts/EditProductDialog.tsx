@@ -1,8 +1,8 @@
+"use client";
 /* eslint-disable @typescript-eslint/no-unused-expressions */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-hooks/rules-of-hooks */
-"use client";
 import {
   Dialog,
   DialogContent,
@@ -13,7 +13,13 @@ import { toast } from "@/hooks/use-toast";
 import { cn } from "@/lib/utils";
 import { fileToDataURI } from "@/utils/helpers";
 import Image from "next/image";
-import { SetStateAction, useMemo, useState, useTransition } from "react";
+import {
+  SetStateAction,
+  useEffect,
+  useMemo,
+  useState,
+  useTransition
+} from "react";
 import { v4 } from "uuid";
 
 import {
@@ -48,28 +54,49 @@ const EditProductDialog = ({
   brandId,
   brandName: name
 }: EditProductDialogProps) => {
-  const [productName, setProductName] = useState<string>(product.name);
+  const [productName, setProductName] = useState<string>("");
   const [productDescription, setProductDescription] = useState<string>(
-    product.description || ""
+    product.description ? product.description : ""
   );
-  const [productPrice, setProductPrice] = useState<number>(product.price);
+  const [productPrice, setProductPrice] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [brandName, setBrandName] = useState<string>(name);
+  const [brandName, setBrandName] = useState<string>("");
   const [newBrand, setNewBrand] = useState<string>("");
   const [totalProducts, setTotalProducts] = useState<number>(
     product.totalProducts
   );
-  const [images, setImages] = useState<ImageObject[]>(product.pictures);
+  const [images, setImages] = useState<ImageObject[]>([]);
   const [isPending, startTransition] = useTransition();
   const isMutating = isPending || isLoading;
   const brandNames = staticShoesData.map((value) => value.brandName);
   const [colorSelected, setColorSeleted] = useState<string[] | undefined>(
     product.color
   );
-  const [sizes, setSizes] = useState<number[]>(product.size);
+  const [sizes, setSizes] = useState<number[]>([]);
   const [size, setSize] = useState<number>(0);
 
+  useEffect(() => {
+    if (!isEditProductOpen) {
+      setProductName("");
+      setProductDescription("");
+      setProductPrice(0);
+      setBrandName(name);
+      setTotalProducts(0);
+      setImages([]);
+      setSizes([]);
+    } else {
+      setProductName(product.name);
+      setProductDescription(product.description ? product.description : "");
+      setProductPrice(product.price);
+      setBrandName(name);
+      setTotalProducts(product.totalProducts);
+      setImages(product.pictures);
+      setSizes(product.size);
+    }
+  }, [isEditProductOpen]);
+
   const deleteImageHandle = (id: string) => {
+    setIsLoading(true);
     const updatedImages = images.map((image) => {
       if (image.id === id) {
         image.url = "";
@@ -79,6 +106,7 @@ const EditProductDialog = ({
     });
 
     setImages(updatedImages);
+    setIsLoading(false);
   };
 
   const isMaxImagesUploaded = useMemo(() => {
@@ -123,12 +151,8 @@ const EditProductDialog = ({
       imagesToUpdate.includes(image) ? updatedImages.shift() || image : image
     );
 
-    console.log("updatedImageObjects ====>", updatedImageObjects);
-
     setImages(updatedImageObjects);
   };
-
-  console.log("images ===>", images);
 
   const sizesHandle = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

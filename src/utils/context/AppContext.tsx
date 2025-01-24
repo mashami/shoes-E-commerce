@@ -67,6 +67,8 @@ export const AppContextProvider = ({ children }: AppContextProviderProps) => {
     }
   };
 
+  // console.log("In AppC product ==>", dataFilled);
+
   const value: AppContextData = {
     openCartDialog,
     searchValue,
