@@ -30,6 +30,7 @@ const MainComp = ({ brandName, product, brandId }: MainCardProps) => {
   const [openEditProducrDialog, setOpenEditProductDialog] =
     useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [brandIdEdit, setBrandIdEdit] = useState<string>(brandId);
 
   const totalPages = Math.ceil(product.length / ITEMS_PER_PAGE);
 
@@ -49,6 +50,10 @@ const MainComp = ({ brandName, product, brandId }: MainCardProps) => {
     currentPage * ITEMS_PER_PAGE
   );
 
+  // console.log("From context ==>", dataFilled);
+
+  // console.log("from edit ===>", product);
+
   return (
     <>
       <div className="space-y-4">
@@ -62,9 +67,9 @@ const MainComp = ({ brandName, product, brandId }: MainCardProps) => {
                   openEditDialog={openEditProducrDialog}
                   setOpenEditDialog={setOpenEditProductDialog}
                   setOpenViewDialog={setIsViewItemOpen}
-                  brandId={brandId}
+                  brandId={brandIdEdit}
                   product={productItem}
-                  brandName={brandName}
+                  setBrandId={setBrandIdEdit}
                 />
               </PaginationItem>
             ))}
@@ -105,7 +110,6 @@ const MainComp = ({ brandName, product, brandId }: MainCardProps) => {
         <ViewItemDialog
           setOpenEditDialog={setOpenEditProductDialog}
           brandName={brandName}
-          brandId={brandId}
           product={dataFilled}
           openViewDialog={isViewItemOpen}
           setOpenViewDialog={setIsViewItemOpen}

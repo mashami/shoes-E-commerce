@@ -301,9 +301,6 @@ export const staticShoesData: ShoesType[] = [
 
 
 
-
-
-
 export const handleFilterShoes = ({productId, brandId}:findProductProps) => {
    
     const brand = staticShoesData.find((shoes) => shoes.id === brandId);

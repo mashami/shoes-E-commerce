@@ -14,13 +14,13 @@ import {
 import { type CarouselApi } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useAppContext } from "@/utils/context/AppContext";
 
 interface ViewItemDialogProps {
   openViewDialog: boolean;
   setOpenViewDialog: Dispatch<SetStateAction<boolean>>;
   product: ProductTypes;
   brandName: string;
-  brandId: string;
   setOpenEditDialog: Dispatch<SetStateAction<boolean>>;
 }
 
@@ -29,14 +29,14 @@ const ViewItemDialog = ({
   setOpenViewDialog,
   product,
   brandName,
-  // brandId,
   setOpenEditDialog
 }: ViewItemDialogProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [api, setApi] = React.useState<CarouselApi>();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [count, setCount] = useState(0);
-  //ygugyguguy
+  const { setDataFilled } = useAppContext();
+
   useEffect(() => {
     if (!api) {
       return;
@@ -51,6 +51,7 @@ const ViewItemDialog = ({
   }, [api]);
 
   const handleEditOpen = () => {
+    setDataFilled(product);
     setOpenEditDialog(true);
     setOpenViewDialog(false);
   };
